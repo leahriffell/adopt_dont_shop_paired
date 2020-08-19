@@ -42,4 +42,10 @@ RSpec.describe "shelters index page", type: :feature do
     expect(page).to have_link(href: "/shelters/1")
     expect(page).to have_link(href: "/shelters/2")
   end
+
+  it "can link to form for creating a new shelter" do
+    visit "/shelters"
+
+    expect(page).to have_link(href: "/shelters/new")
+  end
 end
