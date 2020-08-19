@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "shelters show by id page", type: :feature do 
+RSpec.describe "show shelter by id page", type: :feature do 
   it "can see all shelter's name and address" do
     shelter_1 = Shelter.create(name: "Rocky Mountain Puppy Rescue",
                                address: "10021 E Iliff Ave",
@@ -8,7 +8,7 @@ RSpec.describe "shelters show by id page", type: :feature do
                                state: "CO"
                                zip: "80247")
 
-    visit "/shelters"
+    visit "/shelters/shelter_1"
 
     expect(page).to have_content(shelter_1.name)
     expect(page).to have_content(shelter_1.address)
