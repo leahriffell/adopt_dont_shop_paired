@@ -1,5 +1,6 @@
 <%= form_tag path, method: method do %>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
   <label for="name">Name:</label>
   <input type="text" name="shelter[name]" id="name" placeholder="Name"/><br/>
 
@@ -15,5 +16,5 @@
   <label for="zip">Zip:</label>
   <input type="text" name="shelter[zip]" id="zip" placeholder="Zip"/><br/>
 
-  <input type="submit"/>
+  <%= submit_tag button_text %>
 <% end %>
