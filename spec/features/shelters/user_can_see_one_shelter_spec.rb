@@ -18,4 +18,18 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to have_content(shelter_1.state)
     expect(page).to have_content(shelter_1.zip)
   end
+
+  it "can link back to shelter index" do
+    shelter_1 = Shelter.create(id: 1,
+                               # is adding the id num above what I should be doing? 
+                               name: "Rocky Mountain Puppy Rescue",
+                               address: "10021 E Iliff Ave",
+                               city: "Aurora",
+                               state: "CO",
+                               zip: "80247")
+
+    visit "/shelters/1"
+
+    expect(page).to have_link(href: "/shelters")
+  end
 end
