@@ -4,8 +4,8 @@ RSpec.describe "show shelter by id page", type: :feature do
   it "can see all shelter's name and address" do
     shelter_1 = Shelter.create(name: "Rocky Mountain Puppy Rescue",
                                address: "10021 E Iliff Ave",
-                               city: "Aurora"
-                               state: "CO"
+                               city: "Aurora",
+                               state: "CO",
                                zip: "80247")
 
     visit "/shelters/shelter_1"
