@@ -1,7 +1,5 @@
 <%= form_tag path, method: method do %>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <p>Enter a new shelter:</p>
-
   <label for="name">Name:</label>
   <input type="text" name="shelter[name]" id="name"/><br/>
 
