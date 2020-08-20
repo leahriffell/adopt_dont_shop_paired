@@ -41,5 +41,6 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to_not have_content(@shelter_1.name)
     # expectation above assumes that shelter names are unique
     expect(page).to_not have_link("Delete Shelter")
+    
   end
 end
