@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "show shelter by id page", type: :feature do
   before :each do 
-    @shelter_1 = Shelter.create(
+    @shelter_1 = Shelter.create!(
                                 name: "Rocky Mountain Puppy Rescue",
                                 address: "10021 E Iliff Ave",
                                 city: "Aurora",
@@ -41,5 +41,6 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to_not have_content(@shelter_1.name)
     # expectation above assumes that shelter names are unique
     expect(page).to_not have_link("Delete Shelter")
+    
   end
 end
