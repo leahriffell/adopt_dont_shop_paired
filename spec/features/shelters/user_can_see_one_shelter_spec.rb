@@ -32,4 +32,10 @@ RSpec.describe "show shelter by id page", type: :feature do
 
     expect(page).to have_link(href: "/shelters/1/edit")
   end
+
+  it "has link for deleting the it" do
+    visit "/shelters/1"
+
+    expect(page).to have_link(href: "/shelters/1/delete")
+  end
 end
