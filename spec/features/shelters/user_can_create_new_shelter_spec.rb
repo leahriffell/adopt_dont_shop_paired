@@ -9,13 +9,10 @@ RSpec.describe "new shelter page", type: :feature do
     fill_in(:city, with: "Denver")
     fill_in(:state, with: "CO")
     fill_in(:zip, with: "80202")
-
     click_button("Add Shelter")
-
-    expect(Shelter.last.name == "Kitty Rescue")
-    # how to make this test (and final test in this block) dynamic? 
-
+    
     expect(page).to have_current_path("/shelters")
     expect(page).to have_content("Kitty Rescue")
+    # how to make this test dynamic?
   end
 end
