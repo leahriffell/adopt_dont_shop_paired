@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "show shelter by id page", type: :feature do
   before :each do 
-    @shelter_1 = Shelter.create(
+    @shelter_1 = Shelter.create!(
                                 name: "Rocky Mountain Puppy Rescue",
                                 address: "10021 E Iliff Ave",
                                 city: "Aurora",
