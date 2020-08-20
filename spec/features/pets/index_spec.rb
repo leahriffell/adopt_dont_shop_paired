@@ -2,20 +2,31 @@ require 'rails_helper'
 
 RSpec.describe "pets index page", type: :feature do 
   before :each do
+    @shelter_1 = Shelter.create!(
+                                  name: "Rocky Mountain Puppy Rescue",
+                                  address: "10021 E Iliff Ave",
+                                  city: "Aurora",
+                                  state: "CO",
+                                  zip: "80247"
+                                )
+
     @pet_1 = Pet.create!(
                           image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
                           name: "Fluffy",
                           approximate_age: "15 weeks",
-                          sex: "Female"
+                          sex: "Female",
+                          shelter: @shelter_1
                         )
     
     @pet_2 = Pet.create!(
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
                           name: "Bernard",
                           approximate_age: "1",
-                          sex: "Male"
+                          sex: "Male",
+                          shelter: @shelter_1
                         )
   end
+
 
   it "can see all pets and their info" do
     visit "/pets"
