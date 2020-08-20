@@ -21,10 +21,12 @@ RSpec.describe "edit shelter page", type: :feature do
     expect(find_field("Zip").value).to eq "80247"
     
     fill_in(:name, with: "Rocky Mtn Puppy Rescue")
+    fill_in(:city, with: "Evergreen")
     click_button("Update Shelter")
 
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}")
     expect(page).to have_content("Rocky Mtn Puppy Rescue")
+    expect(page).to have_content("Evergreen")
 
     visit "/shelters/"
     expect(page).to have_content("Rocky Mtn Puppy Rescue")
