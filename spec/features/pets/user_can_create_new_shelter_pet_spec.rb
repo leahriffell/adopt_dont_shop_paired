@@ -14,8 +14,6 @@ RSpec.describe "new pet page", type: :feature do
   it "can create new shelter pet" do
     visit "/shelters/#{@shelter_1.id}/pets/new"
     
-    # test photo upload https://i.redd.it/vdyzuidpq8c01.jpg
-
     fill_in(:image, with: "https://i.redd.it/vdyzuidpq8c01.jpg")
     fill_in(:name, with: "Perla")
     fill_in(:description, with: "I love skittles!")
