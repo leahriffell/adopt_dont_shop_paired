@@ -1,0 +1,7 @@
+<h1>Update Pet</h1>
+
+<%= render :partial => "form", locals: {
+                                        path: "/pets/#{@pet.id}",
+                                        method: :patch,
+                                        button_text: "Update Pet"
+                                      } %>
