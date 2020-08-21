@@ -12,7 +12,7 @@ RSpec.describe "new pet page", type: :feature do
   end
 
   it "can create new shelter pet" do
-    visit "/shelters/#{@shelter_1.id}/new"
+    visit "/shelters/#{@shelter_1.id}/pets/new"
     
     # test photo upload https://i.redd.it/vdyzuidpq8c01.jpg
     fill_in(:name, with: "Perla")
@@ -23,9 +23,8 @@ RSpec.describe "new pet page", type: :feature do
     
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}/pets")
     expect(page).to have_content("Perla")
-    expect(page).to have_content("I love skittles!")
     expect(page).to have_content("5 months")
-    expect(page).to have_content("Adoptable")
+    expect(page).to have_content("Female")
     # how to make this test dynamic?
   end
 end

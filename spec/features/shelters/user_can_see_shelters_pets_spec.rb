@@ -31,6 +31,6 @@ RSpec.describe "show a shelter's pets page", type: :feature do
   it "can link to form for creating a new pet at shelter" do
     visit "/shelters/#{@shelter_1.id}/pets"
 
-    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/new")
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/pets/new")
   end
 end
