@@ -43,4 +43,11 @@ RSpec.describe "pets index page", type: :feature do
     expect(page).to have_content(@pet_2.sex)
     expect(page).to have_content(@pet_2.shelter.name)
   end
+
+  it "can link to one pet" do 
+    visit "/pets"
+
+    expect(page).to have_link(href: "/pets/#{@pet_1.id}")
+    expect(page).to have_link(href: "/pets/#{@pet_2.id}")  
+  end
 end
