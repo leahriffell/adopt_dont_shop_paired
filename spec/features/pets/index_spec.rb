@@ -15,7 +15,7 @@ RSpec.describe "pets index page", type: :feature do
                           name: "Fluffy",
                           approximate_age: "15 weeks",
                           sex: "Female",
-                          shelter_id: 1
+                          shelter_id: @shelter_1.id
                         )
     
     @pet_2 = Pet.create!(
@@ -23,7 +23,7 @@ RSpec.describe "pets index page", type: :feature do
                           name: "Bernard",
                           approximate_age: "1",
                           sex: "Male",
-                          shelter_id: 1
+                          shelter_id: @shelter_1.id
                         )
   end
 
