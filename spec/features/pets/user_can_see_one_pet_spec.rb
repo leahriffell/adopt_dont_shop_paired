@@ -35,4 +35,13 @@ RSpec.describe "show a shelter's pets page", type: :feature do
   it "can link to form for updating its attributes" do
     expect(page).to have_link(href: "/pets/#{@pet_1.id}/edit")
   end
+
+  it "can be deleted" do
+    click_link "Delete Pet"
+
+    expect(current_path).to eq("/pets")    
+    expect(page).to_not have_content(@pet_1.name)
+    # expectation above assumes that shelter names are unique
+    expect(page).to_not have_link("Delete Pet") 
+  end
 end
