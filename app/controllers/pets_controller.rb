@@ -17,6 +17,7 @@ class PetsController < ApplicationController
 
     pet = Pet.new({
       name: params[:name],
+      image: params[:image],
       description: params[:description],
       approximate_age: params[:approximate_age],
       sex: params[:sex],
