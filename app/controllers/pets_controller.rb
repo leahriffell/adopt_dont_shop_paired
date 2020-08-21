@@ -8,8 +8,8 @@ class PetsController < ApplicationController
   end
 
   def new 
-    @pet = Pet.new
     @shelter = Shelter.find(params[:id])
+    @pet = Pet.new
   end
 
   def create 
@@ -31,6 +31,6 @@ class PetsController < ApplicationController
   end
 
   def edit 
-
+    @pet = Pet.find(params[:id])
   end
 end

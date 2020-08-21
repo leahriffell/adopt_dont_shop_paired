@@ -23,11 +23,11 @@ RSpec.describe "edit pet page", type: :feature do
   it "can create edit a pet's attributes" do
     visit "/pets/#{@pet_1.id}/edit"
 
-    expect(find_field("Name").value).to eq "Fluffy"
-    expect(find_field("Image").value).to eq "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg"
-    expect(find_field("Description").value).to eq "I am fluffy and so cute. I need someone to be my friend forever!!"
-    expect(find_field("Approximate_age").value).to eq "15 weeks"
-    expect(find_field("Sex").value).to eq "Female"
+    expect(find_field(:name).value).to eq "Fluffy"
+    expect(find_field(:image).value).to eq "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg"
+    expect(find_field(:description).value).to eq "I am fluffy and so cute. I need someone to be my friend forever!!"
+    expect(find_field(:approximate_age).value).to eq "15 weeks"
+    expect(find_field(:sex).value).to eq "Female"
     
     fill_in(:name, with: "Fluffball")
     fill_in(:approximate_age, with: "17 weeks")
