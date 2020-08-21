@@ -27,4 +27,10 @@ RSpec.describe "show a shelter's pets page", type: :feature do
     expect(page).to have_content(@pet_1.approximate_age)
     expect(page).to have_content(@pet_1.sex)
   end
+
+  it "can link to form for creating a new pet at shelter" do
+    visit "/shelters/#{@shelter_1.id}/pets"
+
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/new")
+  end
 end
