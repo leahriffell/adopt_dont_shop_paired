@@ -17,25 +17,32 @@ RSpec.describe "shelters index page", type: :feature do
                                   state: "CO",
                                   zip: "80439"
                                 )
+    
+    visit "/shelters"
   end
 
   it "can see all shelters' names" do
-    visit "/shelters"
-
     expect(page).to have_content(@shelter_1.name)
     expect(page).to have_content(@shelter_2.name)
   end
 
   it "can can link to one shelter" do
-    visit "/shelters"
-
     expect(page).to have_link(href: "/shelters/#{@shelter_1.id}")
     expect(page).to have_link(href: "/shelters/#{@shelter_2.id}")
   end
 
   it "can link to form for creating a new shelter" do
-    visit "/shelters"
-
     expect(page).to have_link(href: "/shelters/new")
+  end
+
+  it "can link to form for editing each shelter" do
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/edit")
+  end
+
+  xit "can delete each shelter" do
+    click_on "Delete Shelter"
+
+    expect(current_path).to eq("/shelters")    
+    expect(page).to_not have_content(@shelter_1.name)
   end
 end
