@@ -15,7 +15,7 @@ RSpec.describe "pets index page", type: :feature do
                           name: "Fluffy",
                           approximate_age: "15 weeks",
                           sex: "Female",
-                          shelter: @shelter_1
+                          shelter_id: 1
                         )
     
     @pet_2 = Pet.create!(
@@ -23,7 +23,7 @@ RSpec.describe "pets index page", type: :feature do
                           name: "Bernard",
                           approximate_age: "1",
                           sex: "Male",
-                          shelter: @shelter_1
+                          shelter_id: 1
                         )
   end
 
@@ -35,10 +35,12 @@ RSpec.describe "pets index page", type: :feature do
     expect(page).to have_content(@pet_1.name)
     expect(page).to have_content(@pet_1.approximate_age)
     expect(page).to have_content(@pet_1.sex)
+    expect(page).to have_content(@pet_1.shelter.name)
     
     expect(page).to have_css("img[src*='https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_content(@pet_2.approximate_age)
     expect(page).to have_content(@pet_2.sex)
+    expect(page).to have_content(@pet_2.shelter.name)
   end
 end
