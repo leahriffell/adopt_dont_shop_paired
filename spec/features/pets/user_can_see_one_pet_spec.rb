@@ -16,7 +16,7 @@ RSpec.describe "show a shelter's pets page", type: :feature do
                           approximate_age: "15 weeks",
                           sex: "Female",
                           shelter_id: @shelter_1.id,
-                          description: "I am fluffy and so cute. I need someone to be my friend forever!",
+                          description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable"
                         )
   end
