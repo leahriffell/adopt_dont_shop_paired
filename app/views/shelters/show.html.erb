@@ -8,4 +8,6 @@
 
 <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"} %></br>
 
+<a href="/shelters/<%= @shelter.id %>/pets">View My Pets</a></br>
+
 <a href="/shelters">Shelter Index</a>
