@@ -33,6 +33,12 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/edit")
   end
 
+  it "can link to all of its pets" do
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/pets")
+  end
+
   it "can be deleted" do
     visit "/shelters/#{@shelter_1.id}"
     click_link "Delete Shelter"
@@ -41,6 +47,5 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to_not have_content(@shelter_1.name)
     # expectation above assumes that shelter names are unique
     expect(page).to_not have_link("Delete Shelter")
-    
   end
 end
