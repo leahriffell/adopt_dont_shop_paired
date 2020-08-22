@@ -36,7 +36,8 @@ RSpec.describe "pets index page", type: :feature do
     expect(page).to have_content(@pet_1.approximate_age)
     expect(page).to have_content(@pet_1.sex)
     expect(page).to have_content(@pet_1.shelter.name)
-    
+    expect(page).to have_link(href: "/shelters/#{@pet_1.shelter.id}")
+
     expect(page).to have_css("img[src*='https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg']")
     expect(page).to have_content(@pet_2.name)
     expect(page).to have_content(@pet_2.approximate_age)
