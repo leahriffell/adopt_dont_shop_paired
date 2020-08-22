@@ -1,5 +1,5 @@
 class ShelterPetsController < ApplicationController
-  def show 
+  def index 
     @shelter = Shelter.find(params[:id])
   end
 end
