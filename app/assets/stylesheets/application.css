@@ -75,3 +75,10 @@ nav > ul > li {
   width: 200px;
   float: left;
 }
+
+#welcome-logo {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
