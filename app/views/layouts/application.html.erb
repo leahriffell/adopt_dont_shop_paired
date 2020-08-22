@@ -8,10 +8,21 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200;400;500;700;800;900&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
+    <header>
+      <%= image_tag "logo.png", alt: "logo", id: "header-logo" %>
+      <nav>
+        <ul>
+          <li><a href="/shelters">Shelters</a></li>
+          <li><a href="/pets">Pets</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>
