@@ -1,10 +1,12 @@
 <h1>Shelter's Pets</h1>
 
 <% @shelter.pets.each do |pet| %>
-  <h2><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h2>
-  <%= image_tag pet.image %>
-  <p>Age: <%= pet.approximate_age %></p>
-  <p>Sex: <%= pet.sex %></p>
+  <div class="content-card">
+    <h2><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h2>
+    <%= image_tag pet.image, class: "image"%>
+    <p>Age: <%= pet.approximate_age %></p>
+    <p>Sex: <%= pet.sex %></p>
+  </div>
 <% end %>
 
 <h3><a href="/shelters/<%= @shelter.id %>/pets/new">Create Pet</a></h3>
