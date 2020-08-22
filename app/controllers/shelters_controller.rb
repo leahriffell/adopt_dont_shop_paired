@@ -50,4 +50,10 @@
       
       redirect_to "/shelters"
     end
+
+    private
+
+    def shelters_params
+      params.permit(:name, :address, :city, :state, :zip)
+    end
   end
