@@ -1,5 +1,3 @@
-# README
-
 # Adopt Don't Shop  
 BE Mod 2 Week 1 Solo Project
 
