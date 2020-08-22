@@ -34,4 +34,10 @@ RSpec.describe "show a shelter's pets page", type: :feature do
 
     expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/pets/new")
   end
+
+  it "can display num of pets at the shelter" do
+    visit "/shelters/#{@shelter_1.id}/pets"
+
+    expect(page).to have_content("Number of pets here: 1")
+  end
 end
