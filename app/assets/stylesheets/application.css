@@ -53,6 +53,29 @@ nav > ul > li {
   padding: 0 40px 0 0;
 }
 
+label {
+  font-weight: 500;
+}
+
+form {
+  margin: 20px 0 20px 0;
+}
+
+form input[type="text"] {
+  margin: 10px 0 10px 0;
+  border: none;
+  border-bottom: 1px solid black;
+  font-family: 'Spartan', sans-serif;
+  padding: 5px;
+  display: block;
+  width: 400px;
+}
+
+form input[type="text"]:focus {
+  border-bottom: 2px solid;
+  outline: none;
+}
+
 .content-card {
   background: #fff;
   width: 40vw;
@@ -81,4 +104,15 @@ nav > ul > li {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.button {
+  font-family: 'Spartan', sans-serif;
+  background-color: #38b6ff;
+  color: white;
+  font-size: 1.05em;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px; 
 }
