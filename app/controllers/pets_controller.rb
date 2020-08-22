@@ -14,18 +14,8 @@ class PetsController < ApplicationController
 
   def create 
     shelter = Shelter.find(params[:id])
-
-    pet = Pet.new({
-      name: params[:name],
-      image: params[:image],
-      description: params[:description],
-      approximate_age: params[:approximate_age],
-      sex: params[:sex],
-      shelter_id: shelter.id,
-    })
-
+    pet = shelter.pets.create(pet_params)
     pet.save
-
     redirect_to "/shelters/#{shelter.id}/pets"
   end
 
@@ -53,5 +43,11 @@ class PetsController < ApplicationController
     Pet.destroy(params[:id])
       
     redirect_to "/pets"
+  end
+
+  private
+
+  def pet_params
+    params.permit(:name, :image, :description, :approximate_age, :sex)
   end
 end
