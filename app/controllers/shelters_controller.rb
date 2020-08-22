@@ -50,8 +50,4 @@
       
       redirect_to "/shelters"
     end
-
-    def pets 
-      @shelter = Shelter.find(params[:id])
-    end
   end
