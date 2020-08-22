@@ -30,7 +30,6 @@
 
     def destroy
       Shelter.destroy(params[:id])
-      
       redirect_to "/shelters"
     end
 
