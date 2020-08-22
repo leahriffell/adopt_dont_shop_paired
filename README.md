@@ -42,6 +42,6 @@ Describe ORMs and their advantages and use cases
 
 ### Styling
 
-## Web Applications
+### Web Applications
 - Describe the HTTP request/response cycle
 - Describe the different parts of HTTP requests and responses
