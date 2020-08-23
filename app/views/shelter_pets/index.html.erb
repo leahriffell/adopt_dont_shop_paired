@@ -1,6 +1,6 @@
 <h1>Pets at <%= @shelter.name %></h1>
 
-<h3>Number of pets here: <%= @shelter.pets.count %></h3>
+<h3>Pets at <%= @shelter.name %>: <%= @shelter.pets.count %></h3>
 <h3><a href="/shelters/<%= @shelter.id %>/pets/new">Create Pet</a></h3>
 
 <% @shelter.pets.each do |pet| %>
