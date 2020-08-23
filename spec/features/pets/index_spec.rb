@@ -54,8 +54,8 @@ RSpec.describe "pets index page", type: :feature do
     expect(page).to have_link(href: "/pets/#{@pet_1.id}/edit")
   end
 
-  xit "can delete each pet" do
-    click_on "Delete Pet"
+  it "can delete each pet" do
+    first(".delete-pet").click
 
     expect(current_path).to eq("/pets")    
     expect(page).to_not have_content(@pet_1.name)
