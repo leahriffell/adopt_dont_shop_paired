@@ -1,5 +1,7 @@
 # Adopt Don't Shop  
 BE Mod 2 Week 1 Solo Project
+[Live app](https://adopt-dont-shop-leahriff.herokuapp.com/)
+
 
 ## Rails Application 
 
