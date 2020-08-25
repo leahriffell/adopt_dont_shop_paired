@@ -12,11 +12,19 @@ class ReviewsController < ApplicationController
     review = shelter.reviews.create(review_params)
     if review.save
       redirect_to "/shelters/#{shelter.id}"
-    else 
+    else
       flash[:notice] = "Please fill out title, review, and content."
       redirect_to "/shelters/#{shelter.id}/add_review"
       # render :new
     end
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    
   end
 
   private
