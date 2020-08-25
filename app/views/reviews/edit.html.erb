@@ -1,0 +1,7 @@
+<h1>Update Review</h1>
+
+<%= render :partial => "form", locals: {
+                                        path: "/shelters/#{@review.shelter_id}",
+                                        method: :patch,
+                                        button_text: "Update Review"
+                                      } %>
