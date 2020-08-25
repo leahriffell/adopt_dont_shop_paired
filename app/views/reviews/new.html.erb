@@ -1,7 +1,7 @@
 <h1>Add New Review for this Shelter</h1>
 
 <%= render :partial => "form", locals: {
-                                        path: "/shelters/#{@shelter.id}",
+                                        path: "/shelters/#{@shelter.id}/reviews",
                                         method: :post,
                                         button_text: "Add Review"
                                       } %>

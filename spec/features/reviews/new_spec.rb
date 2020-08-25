@@ -11,7 +11,7 @@ RSpec.describe "new review page", type: :feature do
                                 )
   end
   it "can create new review" do
-    visit "/shelters/#{@shelter_1.id}/add_review"
+    visit "/shelters/#{@shelter_1.id}/reviews/new"
 
     fill_in(:title, with: "Mountains of Love <3!")
     fill_in(:rating, with: 5)
@@ -29,13 +29,13 @@ RSpec.describe "new review page", type: :feature do
   end
 
   it "can require fields" do
-    visit "/shelters/#{@shelter_1.id}/add_review"
+    visit "/shelters/#{@shelter_1.id}/reviews/new"
 
     click_button("Add Review")
 
     expect(page).to have_content("Please fill out title, review, and content.")    
     expect(page).to have_button("Add Review")
 
-    expect(page).to have_current_path("/shelters/#{@shelter_1.id}/add_review")
+    expect(page).to have_current_path("/shelters/#{@shelter_1.id}/reviews/new")
   end
 end
