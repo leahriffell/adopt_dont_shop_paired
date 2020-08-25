@@ -80,4 +80,24 @@ RSpec.describe "show shelter by id page", type: :feature do
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/add_review")
   end
+
+  it "can see a link to edit review" do
+
+    @review = @shelter_1.reviews.create!(
+                              title: "Mountains of Love <3!",
+                              rating: 5,
+                              content: "Super clean, well-facilitated, and healthy pups.",
+                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+                            )
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/edit_review/#{@review.id}")
+
+    click_link "Edit Review"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/edit_review/#{@review.id}")
+  end
+
+
 end
