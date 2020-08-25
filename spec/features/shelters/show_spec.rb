@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "show shelter by id page", type: :feature do
-  before :each do 
+  before :each do
     @shelter_1 = Shelter.create!(
                                   name: "Rocky Mountain Puppy Rescue",
                                   address: "10021 E Iliff Ave",
@@ -35,12 +35,12 @@ RSpec.describe "show shelter by id page", type: :feature do
   it "can be deleted" do
     click_link "Delete Shelter"
 
-    expect(current_path).to eq("/shelters")    
+    expect(current_path).to eq("/shelters")
     expect(page).to_not have_content(@shelter_1.name)
     # expectation above assumes that shelter names are unique
   end
 
-  xit "can see list of reviews" do 
+  xit "can see list of reviews" do
     @review = @shelter_1.reviews.create!(
                               title: "Mountains of Love <3!",
                               rating: 5,
@@ -48,9 +48,18 @@ RSpec.describe "show shelter by id page", type: :feature do
                               optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
                             )
 
-    expect(page).to have_content(@review.title)                        
-    expect(page).to have_content(@review.rating)                        
-    expect(page).to have_content(@review.content)                        
+    expect(page).to have_content(@review.title)
+    expect(page).to have_content(@review.rating)
+    expect(page).to have_content(@review.content)
     expect(page).to have_css("img[src*=heart-4]")
+  end
+
+  it "can see a link to add a new review" do
+
+    expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/add_review")
+
+    click_link "Add Review"
+
+    expect(current_path).to eq("/shelters/#{@shelter_1.id}/add_review")
   end
 end
