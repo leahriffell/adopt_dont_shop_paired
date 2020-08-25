@@ -99,7 +99,7 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/#{@review.id}/edit")
   end
 
-  xit "can delete a review" do
+  it "can delete a review" do
     @review = @shelter_1.reviews.create!(
       title: "Mountains of Love <3!",
       rating: 5,
@@ -114,5 +114,6 @@ RSpec.describe "show shelter by id page", type: :feature do
 
     expect(current_path).to eq("/shelters/#{@shelter_1.id}")
     expect(page).to_not have_content(@review.title)
+    expect(page).to_not have_link("Delete Review")
   end
 end
