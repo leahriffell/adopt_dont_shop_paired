@@ -4,7 +4,6 @@ class ReviewsController < ApplicationController
 
   def create 
     shelter = Shelter.find(params[:id])
-    require 'pry'; binding.pry
     review = shelter.reviews.create(review_params)
     review.save
   end

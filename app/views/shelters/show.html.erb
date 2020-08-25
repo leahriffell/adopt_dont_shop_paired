@@ -11,3 +11,13 @@
   <img src="https://www.brandeps.com/icon-download/T/Trash-icon-vector-06.svg" alt="delete-icon" class="delete-icon">
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"} %>
 </div>
+
+<h2>Reviews:</h2>
+<% @shelter.reviews.each do |review| %>
+  <div class="content-card">
+    <h3><%= review.title %></h3>
+    <p>Rating: <%= review.rating %></p>
+    <p>Content: <%= review.content %></p>
+    <%= image_tag review.optional_picture, class: "image"%>
+  </div>
+<% end %>
