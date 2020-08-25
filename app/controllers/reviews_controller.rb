@@ -24,7 +24,11 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    
+    review = Review.find(params[:id])
+    review.update(review_params)
+    # require "pry"; binding.pry
+    review.save
+    redirect_to "/shelters/#{review.shelter_id}"
   end
 
   private
