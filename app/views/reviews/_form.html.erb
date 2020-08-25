@@ -1,0 +1,15 @@
+<%= form_tag path, method: method, class: "form" do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title, @review.title, placeholder: 'Title' %><br>
+
+  <%= label_tag :rating %>
+  <%= text_field_tag :rating, @review.rating, placeholder: 'Rating' %><br>
+
+  <%= label_tag :content %>
+  <%= text_field_tag :content, @review.content, placeholder: 'Content' %><br>
+
+  <%= label_tag :optional_picture %>
+  <%= text_field_tag :optional_picture, @review.optional_picture, placeholder: 'Picture (optional)' %><br>
+
+  <%= submit_tag button_text, class: "button" %>
+<% end %>

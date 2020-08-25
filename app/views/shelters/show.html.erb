@@ -4,7 +4,7 @@
 <p><%= @shelter.address %></p>
 <p><%= "#{@shelter.city}, #{@shelter.state} #{@shelter.zip}" %></p>
 
-<hr><br>  
+<hr><br>
 
 <a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a></br>
 <div>
@@ -21,3 +21,5 @@
     <%= image_tag review.optional_picture, class: "image"%>
   </div>
 <% end %>
+
+<%= link_to "Add Review", "/shelters/#{@shelter.id}/add_review" %>
