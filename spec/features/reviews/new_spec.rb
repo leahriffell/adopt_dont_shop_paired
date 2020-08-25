@@ -27,4 +27,15 @@ RSpec.describe "new review page", type: :feature do
     expect(page).to have_css("img[src*=heart-4]")
     # how to make this test dynamic?
   end
+
+  it "can require fields" do
+    visit "/shelters/#{@shelter_1.id}/add_review"
+
+    click_button("Add Review")
+
+    expect(page).to have_content("Please fill out title, review, and content.")    
+    expect(page).to have_button("Add Review")
+
+    expect(page).to have_current_path("/shelters/#{@shelter_1.id}/add_review")
+  end
 end

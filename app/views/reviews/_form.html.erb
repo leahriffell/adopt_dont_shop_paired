@@ -11,5 +11,10 @@
   <%= label_tag :optional_picture %>
   <%= text_field_tag :optional_picture, @review.optional_picture, placeholder: 'Picture (optional)' %><br>
 
+  <% flash.each do |type, message| %>
+    <p class="error-message"><%= message %></p>
+  <% end %>
+
   <%= submit_tag button_text, class: "button" %>
+  
 <% end %>
