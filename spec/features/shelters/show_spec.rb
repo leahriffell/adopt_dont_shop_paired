@@ -45,7 +45,8 @@ RSpec.describe "show shelter by id page", type: :feature do
                               title: "Mountains of Love <3!",
                               rating: 5,
                               content: "Super clean, well-facilitated, and healthy pups.",
-                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg"
+                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+                              shelter_id: @shelter_1.id
                             )
 
     expect(page).to have_content(@review.title)                        
