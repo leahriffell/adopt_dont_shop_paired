@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
       redirect_to "/shelters/#{shelter.id}"
     else
       flash[:notice] = "Please fill out title, review, and content."
-      redirect_to "/shelters/#{shelter.id}/add_review"
+      redirect_to "/shelters/#{shelter.id}/reviews/new"
       # render :new
     end
   end
@@ -26,9 +26,16 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     review.update(review_params)
-    # require "pry"; binding.pry
     review.save
     redirect_to "/shelters/#{review.shelter_id}"
+  end
+
+  def destroy 
+    shelter = shelter.find(params[:id])
+    review = shelter.reviews.find(review_params)
+    # shelter = review.shelter_id
+    Review.destroy(params[:id])
+    redirect_to "/shelters/#{shelter.id}"
   end
 
   private
