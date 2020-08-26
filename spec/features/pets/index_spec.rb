@@ -25,12 +25,12 @@ RSpec.describe "pets index page", type: :feature do
                           sex: "Male",
                           shelter_id: @shelter_1.id
                         )
-
-    visit "/pets"
   end
 
 
   it "can see all pets and their info" do
+    visit "/pets"
+
     expect(page).to have_css("img[src*='http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg']")
     expect(page).to have_content(@pet_1.name)
     expect(page).to have_content(@pet_1.approximate_age)
@@ -46,18 +46,24 @@ RSpec.describe "pets index page", type: :feature do
   end
 
   it "can link to one pet" do 
+    visit "/pets"
+
     expect(page).to have_link(href: "/pets/#{@pet_1.id}")
     expect(page).to have_link(href: "/pets/#{@pet_2.id}")  
   end
 
   it "can link to form for editing each pet" do
+    visit "/pets"
+
     expect(page).to have_link(href: "/pets/#{@pet_1.id}/edit")
   end
 
   it "can delete each pet" do
+    visit "/pets"
+
     first(".delete-pet").click
 
-    expect(current_path).to eq("/pets")    
+    expect(current_path).to eq("/pets")
     expect(page).to_not have_content(@pet_1.name)
   end
 end
