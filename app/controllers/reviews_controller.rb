@@ -15,7 +15,6 @@ class ReviewsController < ApplicationController
     else
       flash[:notice] = "Please fill out title, review, and content."
       redirect_to "/shelters/#{shelter.id}/reviews/new"
-      # render :new
     end
   end
 

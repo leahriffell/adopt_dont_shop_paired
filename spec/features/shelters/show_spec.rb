@@ -44,7 +44,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can be deleted" do
-
     visit "/shelters/#{@shelter_1.id}"
 
     click_link "Delete Shelter"

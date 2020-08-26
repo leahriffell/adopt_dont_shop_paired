@@ -63,7 +63,7 @@ RSpec.describe "pets index page", type: :feature do
 
     first(".delete-pet").click
 
-    expect(current_path).to eq("/pets")
+    expect(current_path).to eq("/pets") 
     expect(page).to_not have_content(@pet_1.name)
   end
 end
