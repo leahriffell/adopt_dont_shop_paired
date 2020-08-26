@@ -1,8 +1,6 @@
-<h1><%= @pet.name %></h1> 
+<h1><%= @pet.name %></h1>
 
-<% flash.each do |type, message| %>
-  <p class="success-message"><%= message %></p>
-<% end %>
+<%= flash[:notice] %><br><br>
 
 <%= image_tag @pet.image, class: "show-pet" %>
 
@@ -15,8 +13,9 @@
 
 <hr><br>
 
-<%= link_to "Add to Favorites", "/pets/#{@pet.id}" %>
+<%= link_to "Add to Favorites", "/pets/#{@pet.id}/favorite" %><br>
 <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %>
+
 <div>
   <img src="https://www.brandeps.com/icon-download/T/Trash-icon-vector-06.svg" alt="delete-icon" class="delete-icon">
   <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"} %>
