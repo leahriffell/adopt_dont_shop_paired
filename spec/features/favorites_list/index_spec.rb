@@ -23,13 +23,22 @@ RSpec.describe 'favorites index page' do
   end
 
   it 'see all pets favorited' do
+
     visit '/favorites'
 
-    within('#pet-1') do
+    within ".pet#{@pet_1.id}" do
       expect(page).to have_link(@pet_1.name)
       expect(page).to have_css("img[src*='http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg']")
     end
+  end
 
+  it 'can see pet show page when clicked on' do
+
+    visit '/favorites'
+
+    click_link 'Fluffy'
+
+    expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
 
 end
