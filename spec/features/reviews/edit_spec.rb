@@ -19,7 +19,7 @@ RSpec.describe "edit review page", type: :feature do
   end
 
   it "can edit an existing review" do
-    visit "/shelters/#{@shelter_1.id}/edit_review/#{@review.id}"
+    visit "/shelters/#{@shelter_1.id}/reviews/#{@review.id}/edit"
 
     expect(find_field(:title).value).to eq(@review.title)
     expect(find_field(:rating).value).to eq(@review.rating.to_s)
