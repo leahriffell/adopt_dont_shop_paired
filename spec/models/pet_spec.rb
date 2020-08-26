@@ -24,11 +24,11 @@ end
                             shelter_id: @shelter_1.id,
                             favorites: true
                           )
-      expect(Pet.favorite_count).to eq(1)
-    end                   
+      expect(Pet.favorite_pets).to eq([@pet_1])
+    end
   end
 
-  describe "instance methods" do 
+  describe "instance methods" do
     it "can change favorites attribute" do
       @shelter_1 = Shelter.create!(
                                     name: "Rocky Mountain Puppy Rescue",
@@ -48,7 +48,7 @@ end
                           )
 
       expect(@pet_1.favorites).to eq(false)
-      @pet_1.add_to_favorites 
+      @pet_1.add_to_favorites
       expect(@pet_1.favorites).to eq(true)
   end
 end
