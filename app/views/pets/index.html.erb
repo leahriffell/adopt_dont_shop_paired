@@ -8,9 +8,8 @@
       <li>Age: <%= pet.approximate_age %></li>
       <li>Sex: <%= pet.sex %></li>
       <li>Shelter: <a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name %></a></li><br><br>
-      <a href="/pets/<%= pet.id %>/edit">Update Pet</a></br>
       <div>
-        <img src="https://www.brandeps.com/icon-download/T/Trash-icon-vector-06.svg" alt="delete-icon" class="delete-icon">
+        <a href="/pets/<%= pet.id %>/edit">Update Pet</a></br>
         <%= link_to "Delete Pet", "/pets/#{pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"}, class: "delete-pet" %>
       </div>
     </ul>
