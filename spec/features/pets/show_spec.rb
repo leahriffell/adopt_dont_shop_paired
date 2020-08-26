@@ -19,11 +19,11 @@ RSpec.describe "show a shelter's pets page", type: :feature do
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable"
                         )
-    
-    visit "/pets/#{@pet_1.id}"
   end
 
   it "can see the pets's info" do
+    visit "/pets/#{@pet_1.id}"
+
     expect(page).to have_css("img[src*='http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg']")
     expect(page).to have_content(@pet_1.name)
     expect(page).to have_content(@pet_1.description)
@@ -33,15 +33,31 @@ RSpec.describe "show a shelter's pets page", type: :feature do
   end
 
   it "can link to form for updating its attributes" do
+    visit "/pets/#{@pet_1.id}"
+
     expect(page).to have_link(href: "/pets/#{@pet_1.id}/edit")
   end
 
   it "can be deleted" do
+    visit "/pets/#{@pet_1.id}"
+
     click_link "Delete Pet"
 
     expect(current_path).to eq("/pets")    
     expect(page).to_not have_content(@pet_1.name)
     # expectation above assumes that shelter names are unique
     expect(page).to_not have_link("Delete Pet") 
+  end
+
+  it "can be favorited" do 
+    visit "/pets/#{@pet_1.id}"
+
+    expect(page).to have_link("Add to Favorites")
+
+    click_link "Add to Favorites"
+
+    expect(current_path).to eq("/pets/#{@pet_1.id}")
+    expect(page).to have_content("Pet has been added to my favorites list.") 
+    expect(page).to have_content("Favorites(1)")
   end
 end

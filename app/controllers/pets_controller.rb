@@ -36,6 +36,13 @@ class PetsController < ApplicationController
     redirect_to "/pets"
   end
 
+  def favorite
+    pet = Pet.find(params[:id])
+    pet.add_to_favorites
+    flash[:notice] = "Pet has been added to my favorites list."
+    redirect_to "/pets/#{pet.id}"
+  end
+
   private
 
   def pet_params
