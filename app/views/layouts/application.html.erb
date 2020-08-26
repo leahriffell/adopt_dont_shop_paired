@@ -17,9 +17,9 @@
       <a href="/"><%= image_tag "logo.png", alt: "logo", id: "header-logo" %></a>
       <nav>
         <ul>
-          <li><a href="/shelters">Shelters</a></li>
-          <li><a href="/pets">Pets</a></li>
-          <li>Favorites(<%= FavoritesList.num_of_pets %>)</li>
+          <li><%= link_to "Shelters", '/shelters' %></li>
+          <li><%= link_to "Pets", '/shelters'%></li>
+          <li><%= link_to "Favorites(#{FavoritesList.num_of_pets})", '/favorites' %></li>
         </ul>
       </nav>
     </header>

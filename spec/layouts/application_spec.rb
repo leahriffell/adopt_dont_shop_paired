@@ -19,11 +19,16 @@ RSpec.describe "application", type: :feature do
                           favorites: true
                         )
   end
-  it "has navigation bar" do
+
+  it 'has navigation bar' do
+
     visit "/"
 
-    expect(page).to have_content("Pets")
-    expect(page).to have_content("Shelters")
-    expect(page).to have_content("Favorites(1)")
+    within('nav') do
+      expect(page).to have_link("Pets")
+      expect(page).to have_link("Shelters")
+      expect(page).to have_link("Favorites(1)")
+    end 
   end
+
 end
