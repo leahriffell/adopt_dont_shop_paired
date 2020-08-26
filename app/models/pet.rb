@@ -5,7 +5,7 @@ class Pet < ApplicationRecord
     self.where(favorites: true).count 
   end
 
-  def add_to_favorites 
+  def add_to_favorites
     update(favorites: true)
   end
 end
