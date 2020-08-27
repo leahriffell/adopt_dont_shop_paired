@@ -3,36 +3,36 @@ class PetsController < ApplicationController
     @pets = Pet.all
   end
 
-  def show 
+  def show
     @pet = Pet.find(params[:id])
   end
 
-  def new 
+  def new
     @shelter = Shelter.find(params[:id])
     @pet = Pet.new
   end
 
-  def create 
+  def create
     shelter = Shelter.find(params[:id])
     pet = shelter.pets.create(pet_params)
     pet.save
     redirect_to "/shelters/#{shelter.id}/pets"
   end
 
-  def edit 
+  def edit
     @pet = Pet.find(params[:id])
   end
 
   def update
-    pet = Pet.find(params[:id])    
+    pet = Pet.find(params[:id])
     pet.update(pet_params)
     pet.save
     redirect_to "/pets/#{pet.id}"
   end
 
-  def destroy 
+  def destroy
     Pet.destroy(params[:id])
-      
+
     redirect_to "/pets"
   end
 
@@ -41,6 +41,12 @@ class PetsController < ApplicationController
     pet.add_to_favorites
     flash[:notice] = "Pet has been added to my favorites list."
     redirect_to "/pets/#{pet.id}"
+  end
+
+  def unfavorite
+    pet = Pet.find(params[:id])
+    pet.unfavorite
+    redirect_to '/favorites'
   end
 
   private
