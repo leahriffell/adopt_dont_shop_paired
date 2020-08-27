@@ -19,7 +19,7 @@
         <ul>
           <li><%= link_to "Shelters", '/shelters' %></li>
           <li><%= link_to "Pets", '/shelters'%></li>
-          <li><%= link_to "Favorites(#{FavoritesList.num_of_pets})", '/favorites' %></li>
+          <li><%= link_to "Favorites(#{@cart.total_count})", '/favorites' %></li>
         </ul>
       </nav>
     </header>
