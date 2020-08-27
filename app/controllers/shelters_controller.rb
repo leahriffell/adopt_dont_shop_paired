@@ -27,7 +27,6 @@
 
     def update
       shelter = Shelter.find(params[:id])
-      # shelter.update(shelters_params)
       if shelter.update(shelters_params)
         redirect_to "/shelters/#{shelter.id}"
       else
