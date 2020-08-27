@@ -13,8 +13,12 @@
 
     def create
       shelter = Shelter.create(shelters_params)
-      shelter.save
-      redirect_to "/shelters"
+      if shelter.save
+        redirect_to "/shelters"
+      else
+        flash[:notice] = "Please fill out all fields."
+        redirect_to "/shelters/new"
+      end
     end
 
     def edit 
