@@ -3,8 +3,8 @@ class CartController < ApplicationController
 
   def update
     pet = Pet.find(params[:id])
-    cart = Cart.new(session[:cart])
-    cart.add_pet(pet)
+    # cart = Cart.new(session[:cart])
+    cart.add_pet(pet.id)
     session[:cart] = cart.contents
     flash[:notice] = "Pet has been added to my favorites list."
     redirect_to "/pets/#{pet.id}"
