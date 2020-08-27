@@ -4,5 +4,6 @@
   <div class='pet<%= pet.id %> content-card'>
     <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
     <%= image_tag pet.image, class: "image" %>
+    <%= link_to "Remove from Favorites", "/favorites/#{pet.id}", method: 'patch' %>
   </div>
 <% end %>
