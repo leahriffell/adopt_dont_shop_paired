@@ -81,7 +81,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can see a link to edit review" do
-
     @review = @shelter_1.reviews.create!(
                               title: "Mountains of Love <3!",
                               rating: 5,

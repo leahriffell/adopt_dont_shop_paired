@@ -31,4 +31,16 @@ RSpec.describe "edit shelter page", type: :feature do
     visit "/shelters/"
     expect(page).to have_content("Rocky Mtn Puppy Rescue")
   end
+
+  it "can require fields" do
+    visit "/shelters/#{@shelter_1.id}/edit"
+
+    fill_in(:name, with: "")
+
+    click_button("Update Shelter")
+
+    expect(page).to have_current_path("/shelters/#{@shelter_1.id}/edit")
+    expect(page).to have_content("Please fill out all fields.")    
+    expect(page).to have_button("Update Shelter")
+  end
 end
