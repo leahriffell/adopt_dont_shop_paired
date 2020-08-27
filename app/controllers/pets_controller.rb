@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   def index
     @pets = Pet.all
+    @cart = Cart.new(session[:cart])
   end
 
   def show

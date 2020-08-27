@@ -1,7 +1,5 @@
 <h1><%= @pet.name %></h1>
 
-<%= flash[:notice] %><br><br>
-
 <%= image_tag @pet.image, class: "show-pet" %>
 
 <ul>
@@ -14,7 +12,7 @@
 <hr><br>
 
 <section class="actions">
-  <%= link_to "Add to Favorites", "/pets/#{@pet.id}/favorite" %><br>
+  <%= link_to "Add to Favorites", "/cart/#{@pet.id}", method: :patch %><br>
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br>
   <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"} %>
 </section>
