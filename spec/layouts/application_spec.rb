@@ -16,7 +16,7 @@ RSpec.describe "application", type: :feature do
                           approximate_age: "15 weeks",
                           sex: "Female",
                           shelter_id: @shelter_1.id,
-                          favorites: true
+                          is_favorite: true
                         )
   end
 

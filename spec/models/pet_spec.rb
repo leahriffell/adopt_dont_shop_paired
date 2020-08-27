@@ -16,7 +16,7 @@ describe Pet, type: :model do
                           approximate_age: "15 weeks",
                           sex: "Female",
                           shelter_id: @shelter_1.id,
-                          favorites: false
+                          is_favorite: false
                         )
   end
 
@@ -33,16 +33,16 @@ describe Pet, type: :model do
 
   describe "instance methods" do
     it "can change favorites attribute" do
-      expect(@pet_1.favorites).to eq(false)
+      expect(@pet_1.is_favorite).to eq(false)
       @pet_1.add_to_favorites
-      expect(@pet_1.favorites).to eq(true)
+      expect(@pet_1.is_favorite).to eq(true)
     end
 
     it 'can unfavorite pet' do
       @pet_1.add_to_favorites
-      expect(@pet_1.favorites).to eq(true)
+      expect(@pet_1.is_favorite).to eq(true)
       @pet_1.unfavorite
-      expect(@pet_1.favorites).to eq(false)
+      expect(@pet_1.is_favorite).to eq(false)
     end
   end
 end

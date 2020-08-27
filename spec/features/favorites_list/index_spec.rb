@@ -18,7 +18,7 @@ RSpec.describe 'favorites index page' do
                           shelter_id: @shelter_1.id,
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable",
-                          favorites: true
+                          is_favorite: true
                         )
   end
 
