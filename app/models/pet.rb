@@ -8,4 +8,8 @@ class Pet < ApplicationRecord
   def add_to_favorites
     update(favorites: true)
   end
+
+  def unfavorite
+    update(favorites: false)
+  end
 end
