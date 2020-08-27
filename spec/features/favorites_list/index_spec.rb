@@ -18,11 +18,13 @@ RSpec.describe 'favorites index page' do
                           shelter_id: @shelter_1.id,
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable",
-                          is_favorite: true
                         )
   end
 
-  it 'see all pets favorited' do
+  it 'can see all pets favorited' do
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_link("Add to Favorites")
+    click_link "Add to Favorites"
 
     visit '/favorites'
 
@@ -33,6 +35,9 @@ RSpec.describe 'favorites index page' do
   end
 
   it 'can see pet show page when clicked on' do
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_link("Add to Favorites")
+    click_link "Add to Favorites"
 
     visit '/favorites'
 
@@ -41,7 +46,10 @@ RSpec.describe 'favorites index page' do
     expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
 
-  it 'can remove pet from favorites' do
+  xit 'can remove pet from favorites' do
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_link("Add to Favorites")
+    click_link "Add to Favorites"
 
     visit '/favorites'
 
