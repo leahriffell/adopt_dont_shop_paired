@@ -13,10 +13,6 @@
   
   <%= label_tag :zip %>
   <%= text_field_tag :zip, @shelter.zip, placeholder: 'Zip' %><br>
-  
-  <% flash.each do |type, message| %>
-    <p class="error-message"><%= message %></p>
-  <% end %>
 
   <%= submit_tag button_text, class: "button" %>
 <% end %>
