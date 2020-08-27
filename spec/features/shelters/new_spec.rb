@@ -15,4 +15,15 @@ RSpec.describe "new shelter page", type: :feature do
     expect(page).to have_content("Kitty Rescue")
     # how to make this test dynamic?
   end
+
+  it "can require fields" do
+    visit "/shelters/new"
+
+    click_button("Add Shelter")
+
+    expect(page).to have_content("Please fill out all fields.")    
+    expect(page).to have_button("Add Shelter")
+
+    expect(page).to have_current_path("/shelters/new")
+  end
 end
