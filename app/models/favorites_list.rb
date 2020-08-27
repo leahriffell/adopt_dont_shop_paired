@@ -6,4 +6,5 @@ class FavoritesList < ApplicationRecord
   def self.pets
     Pet.favorite_pets
   end
+  
 end
