@@ -5,11 +5,8 @@ RSpec.describe Cart do
 
   describe "#total_count" do
     it "can calculate the total number of pets it holds" do
-      cart = Cart.new({
-        '1' => 1,
-        '2' => 1
-      })
-      expect(cart.total_count).to eq(2)
+
+      expect(subject.total_count).to eq(2)
     end
   end
 
