@@ -27,9 +27,13 @@
 
     def update
       shelter = Shelter.find(params[:id])
-      shelter.update(shelters_params)
-      shelter.save
-      redirect_to "/shelters/#{shelter.id}"
+      # shelter.update(shelters_params)
+      if shelter.update(shelters_params)
+        redirect_to "/shelters/#{shelter.id}"
+      else
+        flash[:notice] = "Please fill out all fields."
+        redirect_to "/shelters/#{shelter.id}/edit"
+      end
     end
 
     def destroy
