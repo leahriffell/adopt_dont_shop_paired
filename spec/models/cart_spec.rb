@@ -39,4 +39,10 @@ RSpec.describe Cart do
       expect(subject.no_favorites).to eq(true)
     end
   end
+
+  describe "#remove_all_pets" do
+    it 'can remove all pets from cart' do
+      expect(subject.remove_all_pets).to eq({})
+    end
+  end
 end
