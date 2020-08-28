@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "show a shelter's pets page", type: :feature do
-  before :each do 
+  before :each do
     @shelter_1 = Shelter.create!(
                                   name: "Rocky Mountain Puppy Rescue",
                                   address: "10021 E Iliff Ave",
@@ -9,7 +9,7 @@ RSpec.describe "show a shelter's pets page", type: :feature do
                                   state: "CO",
                                   zip: "80247"
                                 )
-    
+
     @pet_1 = Pet.create!(
                           image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
                           name: "Fluffy",
@@ -43,21 +43,39 @@ RSpec.describe "show a shelter's pets page", type: :feature do
 
     click_link "Delete Pet"
 
-    expect(current_path).to eq("/pets")    
+    expect(current_path).to eq("/pets")
     expect(page).to_not have_content(@pet_1.name)
     # expectation above assumes that shelter names are unique
-    expect(page).to_not have_link("Delete Pet") 
+    expect(page).to_not have_link("Delete Pet")
   end
 
-  it "can be favorited" do 
+  it "can be favorited" do
     visit "/pets/#{@pet_1.id}"
 
     expect(page).to have_link("Add to Favorites")
 
+    expect(page).to have_no_link("Remove from Favorites")
+
     click_link "Add to Favorites"
 
     expect(current_path).to eq("/pets/#{@pet_1.id}")
-    expect(page).to have_content("Pet has been added to my favorites list.") 
+    expect(page).to have_content("Pet has been added to my favorites list.")
     expect(page).to have_content("Favorites(1)")
+  end
+
+  it "can be removed from favorites" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_link "Add to Favorites"
+
+    expect(page).to have_no_link("Add to Favorites")
+    expect(page).to have_link("Remove from Favorites")
+
+    click_link "Remove from Favorites"
+
+    expect(current_path).to eq("/pets/#{@pet_1.id}")
+    expect(page).to have_content("Pet has been removed from my favorites list.")
+    expect(page).to have_content("Favorites(0)")
+    expect(page).to have_link("Add to Favorites")
   end
 end

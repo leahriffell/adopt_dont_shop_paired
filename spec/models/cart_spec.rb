@@ -23,4 +23,11 @@ RSpec.describe Cart do
       expect(subject.contents).to eq({'1' => 2, '2' => 2})
     end
   end
+
+  describe "#contains_pet" do
+    it "can see if pet exists in cart" do
+      expect(subject.contains_pet("1")).to eq(true)
+      expect(subject.contains_pet("5")).to eq(false)
+    end
+  end
 end

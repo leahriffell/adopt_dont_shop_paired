@@ -10,12 +10,14 @@ class CartController < ApplicationController
     redirect_to "/pets/#{pet.id}"
   end
 
-  def delete 
+  def delete
     pet = Pet.find(params[:id])
     cart.remove_pet(pet.id)
-    redirect_to "/favorites"
+    # redirect_to "/favorites"
+    flash[:notice] = "Pet has been removed from my favorites list."
+    redirect_back(fallback_location:'/favorites')
   end
-  
+
 
 end
 
