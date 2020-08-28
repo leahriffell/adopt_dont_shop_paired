@@ -69,8 +69,21 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to have_css("img[src*=heart-4]")
   end
 
-  it "can see a link to add a new review" do
+  it "can still render a review without an image" do
+    @review_2 = @shelter_1.reviews.create!(
+                                            title: "meh",
+                                            rating: 2,
+                                            content: "it was weird."
+                                          )
 
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_content(@review_2.title)
+    expect(page).to have_content(@review_2.rating)
+    expect(page).to have_content(@review_2.content)
+  end
+
+  it "can see a link to add a new review" do
     visit "/shelters/#{@shelter_1.id}"
 
     expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/reviews/new")
@@ -99,11 +112,11 @@ RSpec.describe "show shelter by id page", type: :feature do
 
   it "can delete a review" do
     @review = @shelter_1.reviews.create!(
-      title: "Mountains of Love <3!",
-      rating: 5,
-      content: "Super clean, well-facilitated, and healthy pups.",
-      optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
-    )
+                                          title: "Mountains of Love <3!",
+                                          rating: 5,
+                                          content: "Super clean, well-facilitated, and healthy pups.",
+                                          optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+                                        )
 
     visit "/shelters/#{@shelter_1.id}"
     expect(page).to have_link("Delete Review")
@@ -113,5 +126,24 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(current_path).to eq("/shelters/#{@shelter_1.id}")
     expect(page).to_not have_content(@review.title)
     expect(page).to_not have_link("Delete Review")
+  end
+
+  it "can see average review rating" do
+    @review_1 = @shelter_1.reviews.create!(
+                                          title: "Mountains of Love! <3",
+                                          rating: 5,
+                                          content: "Super clean, well-facilitated, and healthy pups.", 
+                                          optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg"
+                                        )
+
+    @review_2 = @shelter_1.reviews.create!(
+                                          title: "meh",
+                                          rating: 2,
+                                          content: "it was weird."
+                                        )
+    
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_content("Average rating: #{@shelter_1.avg_rating}")
   end
 end
