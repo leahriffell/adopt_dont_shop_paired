@@ -46,7 +46,7 @@ RSpec.describe 'favorites index page' do
     expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
 
-  xit 'can remove pet from favorites' do
+  it 'can remove pet from favorites' do
     visit "/pets/#{@pet_1.id}"
     expect(page).to have_link("Add to Favorites")
     click_link "Add to Favorites"
