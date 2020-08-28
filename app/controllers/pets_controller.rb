@@ -1,7 +1,6 @@
 class PetsController < ApplicationController
   def index
     @pets = Pet.all
-    @cart = Cart.new(session[:cart])
   end
 
   def show
@@ -37,18 +36,18 @@ class PetsController < ApplicationController
     redirect_to "/pets"
   end
 
-  def favorite
-    pet = Pet.find(params[:id])
-    pet.add_to_favorites
-    flash[:notice] = "Pet has been added to my favorites list."
-    redirect_to "/pets/#{pet.id}"
-  end
+  # def favorite
+  #   pet = Pet.find(params[:id])
+  #   pet.add_to_favorites
+  #   flash[:notice] = "Pet has been added to my favorites list."
+  #   redirect_to "/pets/#{pet.id}"
+  # end
 
-  def unfavorite
-    pet = Pet.find(params[:id])
-    pet.unfavorite
-    redirect_to '/favorites'
-  end
+  # def unfavorite
+  #   pet = Pet.find(params[:id])
+  #   pet.unfavorite
+  #   redirect_to '/favorites'
+  # end
 
   private
 

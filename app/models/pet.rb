@@ -5,11 +5,11 @@ class Pet < ApplicationRecord
     self.where(is_favorite: true)
   end
 
-  def add_to_favorites
-    update(is_favorite: true)
-  end
+  # def add_to_favorites
+  #   update(is_favorite: true)
+  # end
 
-  def unfavorite
-    update(is_favorite: false)
-  end
+  # def unfavorite
+  #   update(is_favorite: false)
+  # end
 end

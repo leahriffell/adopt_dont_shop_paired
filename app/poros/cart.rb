@@ -5,7 +5,7 @@ class Cart
     if contents
       @contents = contents
     else
-      Hash.new(0)
+      @contents = Hash.new
     end
   end
 
@@ -13,11 +13,14 @@ class Cart
     @contents.values.sum
   end
 
-  def add_pet(pet)
-    @contents[pet.to_s] += 1
+  def add_pet(pet_id)
+    pet_id_str = pet_id.to_s
+    @contents[pet_id_str] ||= 0
+    @contents[pet_id_str] += 1
   end
 
-  # def find
-  #
-  # end
+  def remove_pet(pet_id)
+    pet_id_str = pet_id.to_s
+    @contents.delete(pet_id_str)
+  end
 end

@@ -27,7 +27,7 @@ RSpec.describe "application", type: :feature do
     within('nav') do
       expect(page).to have_link("Pets")
       expect(page).to have_link("Shelters")
-      expect(page).to have_link("Favorites(1)")
+      expect(page).to have_link("Favorites(0)")
     end 
   end
 
