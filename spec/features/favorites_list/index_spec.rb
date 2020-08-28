@@ -64,6 +64,12 @@ RSpec.describe 'favorites index page' do
     within('nav') do
       expect(page).to have_link("Favorites(0)")
     end
+  end
 
+  it 'see text saying I have no favorited pets' do
+
+    visit '/favorites'
+
+    expect(page).to have_content('No Furry Friends Here Yet')
   end
 end
