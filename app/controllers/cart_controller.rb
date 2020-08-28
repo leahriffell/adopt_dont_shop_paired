@@ -10,6 +10,13 @@ class CartController < ApplicationController
     redirect_to "/pets/#{pet.id}"
   end
 
+  def delete 
+    pet = Pet.find(params[:id])
+    cart.remove_pet(pet.id)
+    redirect_to "/favorites"
+  end
+  
+
 end
 
 #{pluralize(quantity, "copy")} of #{song.title} in your cart.

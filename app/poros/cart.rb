@@ -13,17 +13,14 @@ class Cart
     @contents.values.sum
   end
 
-  # def add_pet(pet_id)
-  #   @contents[pet_id.to_s] += 1
-  # end
-
   def add_pet(pet_id)
     pet_id_str = pet_id.to_s
     @contents[pet_id_str] ||= 0
     @contents[pet_id_str] += 1
   end
 
-  # def find
-  #
-  # end
+  def remove_pet(pet_id)
+    pet_id_str = pet_id.to_s
+    @contents.delete(pet_id_str)
+  end
 end
