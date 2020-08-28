@@ -1,13 +1,17 @@
 <h1>Favorite Pets</h1>
 
-<% @fav_pets.each do |pet| %>
-  <div class='pet<%= pet.id %> content-card'>
-    <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
-    <%= image_tag pet.image, class: "image" %>
-    <% if cart.contains_pet(pet.id) %>
-      <%= link_to "Remove from Favorites", "/favorites/#{pet.id}", method: :delete %>
-    <% else %>
-      <%= link_to "Add to Favorites", "/cart/#{pet.id}", method: :patch %>
-    <% end %>  
-  </div>
+<% if cart.no_favorites  %>
+  <h2>No Furry Friends Here Yet</h2>
+<% else %>
+  <% @fav_pets.each do |pet| %>
+    <div class='pet<%= pet.id %> content-card'>
+      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+      <%= image_tag pet.image, class: "image" %>
+      <% if cart.contains_pet(pet.id) %>
+        <%= link_to "Remove from Favorites", "/favorites/#{pet.id}", method: :delete %>
+      <% else %>
+        <%= link_to "Add to Favorites", "/cart/#{pet.id}", method: :patch %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
