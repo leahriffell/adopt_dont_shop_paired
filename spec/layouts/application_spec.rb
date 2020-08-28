@@ -16,7 +16,6 @@ RSpec.describe "application", type: :feature do
                           approximate_age: "15 weeks",
                           sex: "Female",
                           shelter_id: @shelter_1.id,
-                          is_favorite: true
                         )
   end
 
@@ -28,7 +27,7 @@ RSpec.describe "application", type: :feature do
       expect(page).to have_link("Pets")
       expect(page).to have_link("Shelters")
       expect(page).to have_link("Favorites(0)")
-    end 
+    end
   end
 
 end
