@@ -30,4 +30,13 @@ RSpec.describe Cart do
       expect(subject.contains_pet("5")).to eq(false)
     end
   end
+
+  describe "#no_favorites" do
+    it 'can see if there are no pets in cart' do
+      expect(subject.no_favorites).to eq(false)
+      subject.remove_pet("1")
+      subject.remove_pet("2")
+      expect(subject.no_favorites).to eq(true)
+    end
+  end
 end
