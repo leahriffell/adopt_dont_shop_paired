@@ -28,4 +28,8 @@ class Cart
     pet_id_str = pet_id.to_s
     @contents.has_key?(pet_id_str)
   end
+
+  def no_favorites
+    @contents.empty?
+  end
 end
