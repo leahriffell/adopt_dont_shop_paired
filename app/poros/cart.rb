@@ -23,4 +23,9 @@ class Cart
     pet_id_str = pet_id.to_s
     @contents.delete(pet_id_str)
   end
+
+  def contains_pet(pet_id)
+    pet_id_str = pet_id.to_s
+    @contents.has_key?(pet_id_str)
+  end
 end
