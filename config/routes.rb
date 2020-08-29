@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get '/favorites', to: 'favorites#index'
   delete '/favorites/all', to: 'cart#delete_all'
   delete '/favorites/:id', to: 'cart#delete'
+
+  get 'applications/new', to: 'applications#new'
 end
