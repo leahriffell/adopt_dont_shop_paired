@@ -16,6 +16,13 @@ class CartController < ApplicationController
     redirect_back(fallback_location:'/favorites')
   end
 
+  def delete_all
+    pet_ids = cart.contents.keys
+    pet_ids.each do |pet|
+      cart.remove_pet(pet)
+    end
+    redirect_to "/favorites"
+  end
 
 end
 
