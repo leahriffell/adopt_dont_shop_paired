@@ -10,7 +10,6 @@ class CartController < ApplicationController
   end
 
   def delete
-    require 'pry'; binding.pry
     pet = Pet.find(params[:id])
     cart.remove_pet(pet.id)
     flash[:notice] = "Pet has been removed from my favorites list."
