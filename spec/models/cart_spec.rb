@@ -40,9 +40,10 @@ RSpec.describe Cart do
     end
   end
 
-  describe "#remove_all_pets" do
-    it 'can remove all pets from cart' do
-      expect(subject.remove_all_pets).to eq({})
+  describe "#remove_pet" do
+    it 'can remove a pet from cart' do
+      subject.remove_pet("1")
+      expect(subject.contents).to eq({'2' => 1})
     end
   end
 end
