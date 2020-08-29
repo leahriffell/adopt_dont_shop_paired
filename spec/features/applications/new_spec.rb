@@ -11,21 +11,21 @@ RSpec.describe "new application page", type: :feature do
                                 )
 
     @pet_1 = @shelter_1.pets.create!(
-                          image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
-                          name: "Fluffy",
-                          approximate_age: "15 weeks",
-                          sex: "Female",
-                          description: "I am fluffy and so cute. I need someone to be my friend forever!!",
-                          adoption_status: "adoptable"
+                                  image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                                  name: "Fluffy",
+                                  approximate_age: "15 weeks",
+                                  sex: "Female",
+                                  description: "I am fluffy and so cute. I need someone to be my friend forever!!",
+                                  adoption_status: "adoptable"
                         )
 
     @pet_2 = @shelter_1.pets.create!(
-                                      image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
-                                      name: "Turquoise",
-                                      approximate_age: "1 year",
-                                      sex: "Male",
-                                      description: "I am looking for green pastures to roam and play in.",
-                                      adoption_status: "adoptable"
+                                  image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
+                                  name: "Turquoise",
+                                  approximate_age: "1 year",
+                                  sex: "Male",
+                                  description: "I am looking for green pastures to roam and play in.",
+                                  adoption_status: "adoptable"
                                     )
 
     visit "/pets/#{@pet_1.id}"
@@ -46,7 +46,7 @@ RSpec.describe "new application page", type: :feature do
     select "Fluffy", from: "Pet names"
     select "Turquoise", from: "Pet names"
 
-    fill_in(:name, with: "Dani")
+    fill_in(:name, with: "Dani Coleman")
     fill_in(:address, with: "123 Road Dr.")
     fill_in(:city, with: "Arvada")
     fill_in(:state, with: "CO")
