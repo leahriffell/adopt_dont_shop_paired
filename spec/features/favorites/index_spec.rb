@@ -64,6 +64,17 @@ RSpec.describe 'favorites index page' do
     within('nav') do
       expect(page).to have_link("Favorites(0)")
     end
+  end
 
+  it 'can see link for adopting favorite pets' do
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_link("Add to Favorites")
+    click_link "Add to Favorites"
+
+    visit '/favorites'
+
+    expect(page).to have_link("Apply to adopt")
+    click_link "Apply to adopt"
+    expect(page).to have_current_path("/applications/new")
   end
 end
