@@ -10,7 +10,6 @@ class ApplicationsController < ApplicationController
       pet_ids = params[:pet_names].map {|id| id.to_i}
       pets = pet_ids.map {|id| Pet.find(id)}
       pets.each {|pet| pet.applications << application}
-      pets.each {|pet| ApplicationPet.create(pet_id: pet.id, application_id: application.id)}
       pets.each {|pet| cart.remove_pet(pet.id)}
       redirect_to "/favorites"
       flash[:success] = "Your application has been submitted for selected pets"
