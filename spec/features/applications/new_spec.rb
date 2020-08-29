@@ -58,8 +58,11 @@ RSpec.describe "new application page", type: :feature do
 
     expect(page).to have_current_path("/favorites")
     expect(page).to have_content('Your application has been submitted for selected pets')
-    expect(page).to have_no_content(@pet_1.name)
-    expect(page).to have_no_content(@pet_2.name)
+    
+    within('#fav_pets') do
+      expect(page).to have_no_content(@pet_1.name)
+      expect(page).to have_no_content(@pet_2.name)
+    end
   end
 
   it "can require all fields" do
