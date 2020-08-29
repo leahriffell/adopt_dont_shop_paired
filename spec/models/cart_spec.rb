@@ -46,4 +46,10 @@ RSpec.describe Cart do
       expect(subject.contents).to eq({'2' => 1})
     end
   end
+
+  describe "#favorite_pets" do
+    it "can get ids of all pets in the cart" do
+      expect(subject.favorite_pets).to eq(['1', '2'])
+    end
+  end
 end

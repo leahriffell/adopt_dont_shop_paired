@@ -29,6 +29,10 @@ class Cart
     @contents.has_key?(pet_id_str)
   end
 
+  def favorite_pets
+    @contents.keys
+  end
+
   def no_favorites
     @contents.empty?
   end

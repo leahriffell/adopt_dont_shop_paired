@@ -74,9 +74,7 @@ RSpec.describe 'favorites index page' do
   end
 
   it 'can remove all from favorited pets' do
-
     visit "/pets/#{@pet_1.id}"
-    expect(page).to have_link("Add to Favorites")
     click_link "Add to Favorites"
 
     visit '/favorites'
@@ -89,5 +87,15 @@ RSpec.describe 'favorites index page' do
     expect(page).to have_content('No Furry Friends Here Yet')
     expect(page).to have_no_link("Remove All Pets From Favorites")
     expect(page).to have_link("Favorites(0)")
+  end
+
+  it 'can see link for adopting favorite pets' do
+    visit "/pets/#{@pet_1.id}"
+    click_link "Add to Favorites"
+
+    visit '/favorites'
+    expect(page).to have_link("Apply to adopt")
+    click_link "Apply to adopt"
+    expect(page).to have_current_path("/applications/new")
   end
 end

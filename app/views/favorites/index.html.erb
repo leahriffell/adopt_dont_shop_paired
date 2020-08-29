@@ -3,7 +3,8 @@
 <% if cart.no_favorites  %>
   <h2>No Furry Friends Here Yet</h2>
 <% else %>
-  <%= link_to "Remove All Pets From Favorites", "/favorites/all", method: :delete %>
+  <%= link_to "Apply to adopt", "/applications/new" %><br>
+  <%= link_to "Remove All Pets From Favorites", "/favorites/all", method: :delete %><br>
   <% @fav_pets.each do |pet| %>
     <div class='pet<%= pet.id %> content-card'>
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
