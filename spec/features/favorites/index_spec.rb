@@ -19,6 +19,15 @@ RSpec.describe 'favorites index page' do
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable",
                         )
+    @application = @pet_1.applications.create!(
+                          name: "Dani Coleman",
+                          address: "123 Road Dr.",
+                          city: "Arvada",
+                          state: "CO",
+                          zip: "80005",
+                          phone_number: "555-555-5555",
+                          description: "I love animals!!!!!"
+                        )
   end
 
   it 'can see all pets favorited' do
@@ -28,7 +37,7 @@ RSpec.describe 'favorites index page' do
 
     visit '/favorites'
 
-    within ".pet#{@pet_1.id}" do
+    within "#pet#{@pet_1.id}" do
       expect(page).to have_link(@pet_1.name)
       expect(page).to have_css("img[src*='http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg']")
     end
@@ -41,7 +50,9 @@ RSpec.describe 'favorites index page' do
 
     visit '/favorites'
 
-    click_link 'Fluffy'
+    within "#pet#{@pet_1.id}" do
+      click_link 'Fluffy'
+    end
 
     expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
@@ -53,13 +64,16 @@ RSpec.describe 'favorites index page' do
 
     visit '/favorites'
 
-    within ".pet#{@pet_1.id}" do
+    within("#pet#{@pet_1.id}")  do
       expect(page).to have_link("Remove from Favorites")
       click_link "Remove from Favorites"
     end
 
     expect(page).to have_current_path('/favorites')
-    expect(page).to have_no_content(@pet_1.name)
+
+    within('#fav_pets') do
+      expect(page).to have_no_content(@pet_1.name)
+    end
 
     within('nav') do
       expect(page).to have_link("Favorites(0)")
@@ -97,5 +111,13 @@ RSpec.describe 'favorites index page' do
     expect(page).to have_link("Apply to adopt")
     click_link "Apply to adopt"
     expect(page).to have_current_path("/applications/new")
+  end
+
+  it 'see a section on the page that has a list of all of the pets that have at least one application' do
+    visit '/favorites'
+
+    within("#pet_apps") do
+      expect(page).to have_link(@pet_1.name)
+    end
   end
 end
