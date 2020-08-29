@@ -88,5 +88,6 @@ RSpec.describe 'favorites index page' do
     expect(page).to have_current_path("/favorites")
     expect(page).to have_content('No Furry Friends Here Yet')
     expect(page).to have_no_link("Remove All Pets From Favorites")
+    expect(page).to have_link("Favorites(0)")
   end
 end
