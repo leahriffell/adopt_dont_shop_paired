@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "new application page", type: :feature do 
+RSpec.describe "new application page", type: :feature do
   before :each do
     @shelter_1 = Shelter.create!(
                                   name: "Rocky Mountain Puppy Rescue",
@@ -9,7 +9,7 @@ RSpec.describe "new application page", type: :feature do
                                   state: "CO",
                                   zip: "80247"
                                 )
-    
+
     @pet_1 = @shelter_1.pets.create!(
                           image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
                           name: "Fluffy",
@@ -26,8 +26,8 @@ RSpec.describe "new application page", type: :feature do
                                       sex: "Male",
                                       description: "I am looking for green pastures to roam and play in.",
                                       adoption_status: "adoptable"
-                                    )    
-                                          
+                                    )
+
     visit "/pets/#{@pet_1.id}"
     click_link "Add to Favorites"
 
@@ -60,5 +60,16 @@ RSpec.describe "new application page", type: :feature do
     expect(page).to have_content('Your application has been submitted for selected pets')
     expect(page).to have_no_content(@pet_1.name)
     expect(page).to have_no_content(@pet_2.name)
+  end
+
+  it "can require all fields" do
+    visit "/applications/new"
+
+    click_button("Submit Application")
+
+    expect(page).to have_content("Please fill out all fields.")
+    expect(page).to have_button("Submit Application")
+
+    expect(page).to have_current_path("/applications/new")
   end
 end
