@@ -64,6 +64,30 @@ RSpec.describe 'favorites index page' do
     within('nav') do
       expect(page).to have_link("Favorites(0)")
     end
+  end
 
+  it 'see text saying I have no favorited pets' do
+
+    visit '/favorites'
+
+    expect(page).to have_content('No Furry Friends Here Yet')
+  end
+
+  it 'can remove all from favorited pets' do
+
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_link("Add to Favorites")
+    click_link "Add to Favorites"
+
+    visit '/favorites'
+
+    expect(page).to have_link("Remove All Pets From Favorites")
+
+    click_link "Remove All Pets From Favorites"
+
+    expect(page).to have_current_path("/favorites")
+    expect(page).to have_content('No Furry Friends Here Yet')
+    expect(page).to have_no_link("Remove All Pets From Favorites")
+    expect(page).to have_link("Favorites(0)")
   end
 end
