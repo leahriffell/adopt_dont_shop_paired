@@ -32,8 +32,4 @@ class Cart
   def no_favorites
     @contents.empty?
   end
-
-  def remove_all_pets
-    @contents = {}
-  end
 end
