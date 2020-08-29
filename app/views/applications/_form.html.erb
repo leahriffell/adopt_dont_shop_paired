@@ -1,13 +1,13 @@
 <%= form_tag path, method: method, class: "form" do %>
 
-  <%= label_tag :Select_pets %>
-  <%= select_tag 'pet_names', options_for_select(@fav_pets.collect{ |pet| [pet.name, pet.id] }) %>
+  <%= label_tag :pet_names %>
+  <%= select_tag 'pet_names', options_for_select(@fav_pets.collect{ |pet| [pet.name] }) %>
   
   <%= label_tag :name %>
   <%= text_field_tag :name, @application.name, placeholder: 'Name' %><br>
 
   <%= label_tag :address %>
-  <%= text_field_tag :application, @application.application, placeholder: 'Address' %><br>
+  <%= text_field_tag :address, @application.address, placeholder: 'Address' %><br>
 
   <%= label_tag :city %>
   <%= text_field_tag :city, @application.city, placeholder: 'City' %><br>
@@ -20,6 +20,9 @@
 
   <%= label_tag :phone_number %>
   <%= text_field_tag :phone_number, @application.phone_number, placeholder: 'Phone Number' %><br>
+
+  <%= label_tag :description %>
+  <%= text_field_tag :description, @application.description, placeholder: 'Why would you make a good home for these furry friends?' %><br>
 
   <%= submit_tag button_text, class: "button" %>
 <% end %>
