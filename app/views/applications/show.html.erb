@@ -1,4 +1,4 @@
-<h1>My Applications</h1>
+<h1>Application for <%= @application.name  %></h1>
 
 <ul>
   <li>Name: <%= @application.name %></li>
@@ -8,5 +8,9 @@
   <li>Zip: <%= @application.zip %></li>
   <li>Phone Number: <%= @application.phone_number %></li>
   <li>Description: <%= @application.description %></li>
-  <!-- #add pet name with link -->
+  <li>Pets:</li>
+    <% @pets.each do |pet|  %>
+      <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
+    <% end %>
 </ul>
+<!-- add the names of pets associated with the app as a link to their show page -->
