@@ -64,7 +64,7 @@ describe 'application show page' do
 
     within "#pet_on_app-#{@pet_1.id}" do
       expect(page).to have_button("Approve")
-      click_button "Approve"
+      click_button "Approve for #{@pet_1.name}"
       expect(page).to have_current_path("/pets/#{@pet_1.id}")
       rescue Selenium::WebDriver::Error::StaleElementReferenceError
         sleep 1
@@ -74,4 +74,20 @@ describe 'application show page' do
     end
   end
 
+  it 'can approve multiple pets at once' do 
+
+    visit "/applications/#{@application.id}"
+
+    within "#select_multiple" do
+      expect(page).to have_button("Approve")
+      select "Fluffy", from: "Pet names"
+      select "Turquoise", from: "Pet names"
+      click_button "Approve"
+      expect(page).to have_current_path("/applications/#{@application.id}")
+    end
+    
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_content("Adoption status: Pending")
+    expect(page).to have_content("On hold for Dani Coleman")
+  end
 end

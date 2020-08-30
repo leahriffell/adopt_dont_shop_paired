@@ -32,8 +32,11 @@ pet_1 = Pet.create!(
   name: "Fluffy",
   approximate_age: "15 weeks",
   sex: "Female",
+  description: "I'm so fluffy.",
+  adoption_status: "adoptable",
   shelter_id: shelter_1.id
 )
+
 pet_2 = Pet.create!(
   image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
   name: "Turquoise",
@@ -43,7 +46,18 @@ pet_2 = Pet.create!(
   adoption_status: "adoptable",
   shelter_id: shelter_1.id
 )
-application = pet_2.applications.create!(
+
+pet_3 = Pet.create!(
+  image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
+  name: "Bernard",
+  approximate_age: "1",
+  sex: "Male",  
+  description: "Ugh I'm llama. I promise I won't spit on you!",
+  adoption_status: "adoptable",
+  shelter_id: shelter_1.id
+)
+
+application = Application.create!(
   name: "Paul Bunyan",
   address: "12 Big Tree Ln",
   city: "Alachua",
@@ -52,3 +66,6 @@ application = pet_2.applications.create!(
   phone_number: "1234567890",
   description: "My trusty Blue Ox is retired. Looking for my forever logging partner!"
 )
+
+pet_2.applications << application
+pet_3.applications << application
