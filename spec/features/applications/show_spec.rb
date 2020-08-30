@@ -58,4 +58,17 @@ describe 'application show page' do
     expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
 
+  it 'see a link to approve the application for that specific pet' do
+
+    visit "/applications/#{@application.id}"
+
+    within "#pet_on_app-#{@pet_1.id}" do
+      expect(page).to have_button("Approve")
+      click_link "Approve"
+      expect(page).to have_current_path("/pets/#{@pet_1.id}")
+      expect(page).to have_content("Adoption status: Pending")
+      expect(page).to have_content("On hold for #{@application.name}")
+    end
+  end
+
 end
