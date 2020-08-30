@@ -27,7 +27,7 @@ describe 'application show page' do
                                   description: "I am looking for green pastures to roam and play in.",
                                   adoption_status: "adoptable"
                                     )
-    @application = @pet_1.applications.create!(
+    @application = Application.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
                           city: "Arvada",
@@ -37,11 +37,8 @@ describe 'application show page' do
                           description: "I love animals!!!!!"
                         )
 
-    visit "/pets/#{@pet_1.id}"
-    click_link "Add to Favorites"
-
-    visit "/pets/#{@pet_2.id}"
-    click_link "Add to Favorites"
+    @pet_1.applications << @application
+    @pet_2.applications << @application
   end
 
   it 'can see application with all fields and name of pets' do
@@ -55,8 +52,10 @@ describe 'application show page' do
     expect(page).to have_content(@application.zip)
     expect(page).to have_content(@application.phone_number)
     expect(page).to have_content(@application.description)
-    expect(page).to have_content(@application.pets.name)
+    expect(page).to have_link(@pet_1.name)
+    expect(page).to have_link(@pet_2.name)
+    click_link "Fluffy"
+    expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
-
 
 end
