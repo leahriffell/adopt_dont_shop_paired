@@ -64,10 +64,10 @@ describe 'application show page' do
 
     within "#pet_on_app-#{@pet_1.id}" do
       expect(page).to have_button("Approve")
-      click_link "Approve"
+      click_button "Approve"
       expect(page).to have_current_path("/pets/#{@pet_1.id}")
       expect(page).to have_content("Adoption status: Pending")
-      expect(page).to have_content("On hold for #{@application.name}")
+      expect(page).to have_content("On hold for Dani Coleman")
     end
   end
 
