@@ -9,13 +9,25 @@
   <li>Phone Number: <%= @application.phone_number %></li>
   <li>Description: <%= @application.description %></li>
   <li>Pets:</li>
+    <h4>Approve individually:</h4>
+
     <% @pets.each do |pet|  %>
-      <div id="pet_on_app-<%= pet.id %>">
+      <div id="pet_on_app-<%= pet.id %>" class="content-card">
         <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
         <%=form_tag "/pets/#{pet.id}/application_status", method: :patch do  %>
           <%= hidden_field_tag :approved_applicant, @application.id %>
-          <%= submit_tag "Approve", class: "button" %>
+          <%= submit_tag "Approve for #{pet.name}", class: "button" %>
         <% end %>
       </div>
     <% end %>
+
+    <h4>Approve multiple:</h4>
+    <div id="select_multiple">
+      <%= form_tag "/pets/:id/application_status", method: :patch, class: "form" do %>
+        <%= label_tag :pet_names %>
+        <%= select_tag :pet_names, options_for_select(@pets.collect{ |pet| [pet.name, pet.id] }), {:multiple => true} %><br><br>
+        <%= hidden_field_tag :approved_applicant, @application.id %>
+        <%= submit_tag "Approve", class: "button" %>
+      <% end %>
+    </div>
 </ul>
