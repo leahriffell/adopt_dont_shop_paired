@@ -12,7 +12,10 @@
     <% @pets.each do |pet|  %>
       <div id="pet_on_app-<%= pet.id %>">
         <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
-        <button><%= link_to "Approve", "/pets/#{pet.id}/application_status", method: :patch %> </button>
+        <%=form_tag "/pets/#{pet.id}/application_status", method: :patch do  %>
+          <%= hidden_field_tag :approved_applicant, @application.id %>
+          <%= submit_tag "Approve", class: "button" %>
+        <% end %>
       </div>
     <% end %>
 </ul>
