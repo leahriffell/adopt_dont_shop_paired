@@ -55,5 +55,11 @@ describe Pet, type: :model do
       expect(@pet_1.has_apps).to eq(true)
       expect(@pet_2.has_apps).to eq(false)
     end
+
+    it "can change application status to pending" do
+      @pet_1.change_to_pending
+      expect(@pet_1.adoption_status).to eq("Pending")
+    end
   end
+
 end
