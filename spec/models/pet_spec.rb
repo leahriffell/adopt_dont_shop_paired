@@ -49,4 +49,11 @@ describe Pet, type: :model do
       expect(Pet.pets_with_apps).to eq([@pet_1])
     end
   end
+
+  describe 'instance method' do
+    it "can see applications exist" do
+      expect(@pet_1.has_apps).to eq(true)
+      expect(@pet_2.has_apps).to eq(false)
+    end
+  end
 end
