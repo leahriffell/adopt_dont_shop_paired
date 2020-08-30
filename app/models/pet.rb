@@ -8,7 +8,6 @@ class Pet < ApplicationRecord
   end
 
   def has_apps
-    applications.count > 0 
-
+    applications.count > 0
   end
 end
