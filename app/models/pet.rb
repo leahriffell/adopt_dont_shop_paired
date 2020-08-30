@@ -6,4 +6,8 @@ class Pet < ApplicationRecord
   def self.pets_with_apps
     Pet.joins(:applications)
   end
+
+  def has_apps
+    applications.count > 0
+  end
 end

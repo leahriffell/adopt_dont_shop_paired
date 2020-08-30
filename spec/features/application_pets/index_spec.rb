@@ -9,7 +9,12 @@ describe 'application pets index' do
                                   state: "CO",
                                   zip: "80247"
                                 )
-
+    @pet_1 = @shelter_1.pets.create!(
+                          image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                          name: "Fluffy",
+                          approximate_age: "15 weeks",
+                          sex: "Female",
+                        )
     @pet_2 = @shelter_1.pets.create!(
                                   image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
                                   name: "Turquoise",
@@ -27,9 +32,8 @@ describe 'application pets index' do
                           phone_number: "555-555-5555",
                           description: "I love animals!!!!!"
                         )
-
     @pet_2.applications << @application
-  end 
+  end
 
   it 'link to names of all applicants applications show page' do
 
@@ -40,6 +44,13 @@ describe 'application pets index' do
     click_link "#{@application.name}"
 
     expect(page).to have_current_path("/applications/#{@application.id}")
+  end
+
+  it 'see a message saying that there are no applications for this pet yet' do
+
+    visit "/pets/#{@pet_1.id}/applications"
+
+    expect(page).to have_content("No applications yet. Still looking for my forever friend.")
   end
 
 end
