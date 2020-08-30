@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Pet.destroy_all
+ApplicationPet.destroy_all
+Application.destroy_all
 Review.destroy_all
+Pet.destroy_all
 Shelter.destroy_all
 
 shelter_1 = Shelter.create!(
@@ -31,4 +33,22 @@ pet_1 = Pet.create!(
   approximate_age: "15 weeks",
   sex: "Female",
   shelter_id: shelter_1.id
+)
+pet_2 = Pet.create!(
+  image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
+  name: "Turquoise",
+  approximate_age: "1 year",
+  sex: "Male",
+  description: "I am looking for green pastures to roam and play in.",
+  adoption_status: "adoptable",
+  shelter_id: shelter_1.id
+)
+application = pet_2.applications.create!(
+  name: "Paul Bunyan",
+  address: "12 Big Tree Ln",
+  city: "Alachua",
+  state: "TX",
+  zip: "95743",
+  phone_number: "1234567890",
+  description: "My trusty Blue Ox is retired. Looking for my forever logging partner!"
 )
