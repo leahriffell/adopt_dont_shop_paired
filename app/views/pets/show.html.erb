@@ -17,6 +17,7 @@
   <% else %>
     <%= link_to "Add to Favorites", "/cart/#{@pet.id}", method: :patch %><br>
   <% end %>
+  <%= link_to "Applications for #{@pet.name}", "/pets/#{@pet.id}/applications" %><br>
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br>
   <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"} %>
 </section>
