@@ -32,22 +32,14 @@ class PetsController < ApplicationController
 
   def destroy
     Pet.destroy(params[:id])
-
     redirect_to "/pets"
   end
 
-  # def favorite
-  #   pet = Pet.find(params[:id])
-  #   pet.add_to_favorites
-  #   flash[:notice] = "Pet has been added to my favorites list."
-  #   redirect_to "/pets/#{pet.id}"
-  # end
-
-  # def unfavorite
-  #   pet = Pet.find(params[:id])
-  #   pet.unfavorite
-  #   redirect_to '/favorites'
-  # end
+  def change_application_status
+    pet = Pet.find(params[:id])
+    pet.change_to_pending
+    redirect_to "/pets/#{pet.id}"
+  end
 
   private
 
