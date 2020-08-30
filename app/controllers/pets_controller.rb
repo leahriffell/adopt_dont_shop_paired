@@ -36,11 +36,21 @@ class PetsController < ApplicationController
   end
 
   def change_application_status
-    pet = Pet.find(params[:id])
     approved_applicant_name = Application.find(params[:approved_applicant]).name
-    pet.update(approved_applicant: approved_applicant_name)
-    pet.change_to_pending
-    redirect_to "/pets/#{pet.id}"
+    application_id = Application.find(params[:approved_applicant]).id
+    if params[:pet_names]
+      pets = Pet.find(params[:pet_names])
+      pets.each do |pet|
+        pet.update(approved_applicant: approved_applicant_name)
+        pet.change_to_pending
+      end
+      redirect_to "/applications/#{application_id}"
+    else 
+      pet = Pet.find(params[:id])
+      pet.update(approved_applicant: approved_applicant_name)
+      pet.change_to_pending
+      redirect_to "/pets/#{pet.id}"
+    end
   end
 
   private
