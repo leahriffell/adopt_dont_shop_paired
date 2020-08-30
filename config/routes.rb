@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   post 'applications', to: 'applications#create'
   get 'applications/:id', to: 'applications#show'
   get '/pets/:id/applications', to: 'application_pets#index'
+  patch '/pets/:id/application_status', to: 'pets#change_application_status'
 end
