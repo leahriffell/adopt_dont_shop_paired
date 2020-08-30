@@ -78,4 +78,12 @@ RSpec.describe "show a shelter's pets page", type: :feature do
     expect(page).to have_content("Favorites(0)")
     expect(page).to have_link("Add to Favorites")
   end
+
+  it "can see link to view all applications for this pet" do
+    visit "/pets/#{@pet_1.id}"
+
+    click_link "Applications for #{@pet_1.name}"
+
+    expect(current_path).to eq("/pets/#{@pet_1.id}/applications")
+  end
 end
