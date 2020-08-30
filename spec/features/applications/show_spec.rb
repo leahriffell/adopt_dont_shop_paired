@@ -58,4 +58,20 @@ describe 'application show page' do
     expect(page).to have_current_path("/pets/#{@pet_1.id}")
   end
 
+  it 'see a link to approve the application for that specific pet' do
+
+    visit "/applications/#{@application.id}"
+
+    within "#pet_on_app-#{@pet_1.id}" do
+      expect(page).to have_button("Approve")
+      click_button "Approve"
+      expect(page).to have_current_path("/pets/#{@pet_1.id}")
+      rescue Selenium::WebDriver::Error::StaleElementReferenceError
+        sleep 1
+        retry
+      expect(page).to have_content("Adoption status: Pending")
+      expect(page).to have_content("On hold for Dani Coleman")
+    end
+  end
+
 end
