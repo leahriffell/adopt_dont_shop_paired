@@ -22,6 +22,7 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
     @pets = @application.pets
+    @non_pending_pets = @pets.find_all {|pet| !pet.has_approved_applicant }
   end
 
   private
