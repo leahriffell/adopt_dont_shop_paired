@@ -15,4 +15,10 @@ class Shelter < ApplicationRecord
   def has_pending_apps
     pets.select {|pet| pet.is_pending}.count != 0
   end
+
+  def delete_shelter_and_associations(shelter_id)
+    pets.each {|pet| Pet.destroy(pet.id)}
+    reviews.each {|review| Review.destroy(review.id)}
+    Shelter.destroy(shelter_id)
+  end
 end

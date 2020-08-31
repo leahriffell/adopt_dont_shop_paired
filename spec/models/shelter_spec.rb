@@ -16,6 +16,15 @@ describe Shelter, type: :model do
                                 state: "CO",
                                 zip: "80439"
                                 )
+    @pet_1 = Pet.create!(
+                          image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                          name: "Fluffy",
+                          approximate_age: "15 weeks",
+                          sex: "Female",
+                          shelter_id: @shelter.id,
+                          description: "I am fluffy and so cute. I need someone to be my friend forever!!",
+                          adoption_status: "adoptable"
+                        )
     @pet_2 = Pet.create!(
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
                           name: "Bernard",
@@ -73,6 +82,14 @@ describe Shelter, type: :model do
     it "can see if a shelter has any pending applications" do
       expect(@shelter.has_pending_apps).to eq(false)
       expect(@shelter_2.has_pending_apps).to eq(true)
+    end
+
+    it "can delete all associations of a shelter" do
+      expect(@shelter.delete_shelter_and_associations(@shelter.id))
+      expect(Pet.where(id: @pet_1.id)).to eq([])
+      expect(Review.where(id: @review_1.id)).to eq([])
+      expect(Review.where(id: @review_2.id)).to eq([])
+      expect(Shelter.where(id: @shelter.id)).to eq([])
     end
   end
 end

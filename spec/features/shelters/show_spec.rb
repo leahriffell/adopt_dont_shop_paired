@@ -9,6 +9,12 @@ RSpec.describe "show shelter by id page", type: :feature do
                                   state: "CO",
                                   zip: "80247"
                                 )
+    @review = @shelter_1.reviews.create!(
+                                  title: "Mountains of Love <3!",
+                                  rating: 5,
+                                  content: "Super clean, well-facilitated, and healthy pups.",
+                                  optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+                                )
   end
 
   it "can see the shelter's name and address" do
@@ -54,12 +60,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can see list of reviews" do
-    @review = @shelter_1.reviews.create!(
-                              title: "Mountains of Love <3!",
-                              rating: 5,
-                              content: "Super clean, well-facilitated, and healthy pups.",
-                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
-                            )
 
     visit "/shelters/#{@shelter_1.id}"
 
@@ -94,13 +94,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can see a link to edit review" do
-    @review = @shelter_1.reviews.create!(
-                              title: "Mountains of Love <3!",
-                              rating: 5,
-                              content: "Super clean, well-facilitated, and healthy pups.",
-                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
-                            )
-
     visit "/shelters/#{@shelter_1.id}"
 
     expect(page).to have_link(href: "/shelters/#{@shelter_1.id}/reviews/#{@review.id}/edit")
@@ -111,13 +104,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can delete a review" do
-    @review = @shelter_1.reviews.create!(
-                                          title: "Mountains of Love <3!",
-                                          rating: 5,
-                                          content: "Super clean, well-facilitated, and healthy pups.",
-                                          optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
-                                        )
-
     visit "/shelters/#{@shelter_1.id}"
     expect(page).to have_link("Delete Review")
 
@@ -129,13 +115,6 @@ RSpec.describe "show shelter by id page", type: :feature do
   end
 
   it "can see average review rating" do
-    @review_1 = @shelter_1.reviews.create!(
-                                          title: "Mountains of Love! <3",
-                                          rating: 5,
-                                          content: "Super clean, well-facilitated, and healthy pups.",
-                                          optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg"
-                                        )
-
     @review_2 = @shelter_1.reviews.create!(
                                           title: "meh",
                                           rating: 2,
@@ -172,4 +151,5 @@ RSpec.describe "show shelter by id page", type: :feature do
     expect(page).to have_no_link("Delete Shelter")
     expect(page).to have_content("Shelter has pending applications")
   end
+
 end
