@@ -7,7 +7,7 @@
   <li>State: <%= @application.state %></li>
   <li>Zip: <%= @application.zip %></li>
   <li>Phone Number: <%= @application.phone_number %></li>
-  <li>Description: <%= @application.description %></li>
+  <li>Description: <%= @application.description %></li><br>
   <li>Pets:</li>
     <h4>Approve individually:</h4>
 
@@ -27,9 +27,10 @@
 
     <h4>Approve multiple:</h4>
     <div id="select_multiple">
+      <p class="explanation"> Pets with pending applications will not be shown for approval.</p>
       <%= form_tag "/pets/:id/application_status", method: :patch, class: "form" do %>
-        <%= label_tag :pet_names %>
-        <%= select_tag :pet_names, options_for_select(@pets.collect{ |pet| [pet.name, pet.id] }), {:multiple => true} %><br><br>
+        <%= label_tag :pet_names %><br>
+        <%= select_tag :pet_names, options_for_select(@non_pending_pets.collect{ |pet| [pet.name, pet.id] }), {multiple: true} %><br><br>
         <%= hidden_field_tag :approved_applicant, @application.id %>
         <%= submit_tag "Approve", class: "button" %>
       <% end %>
