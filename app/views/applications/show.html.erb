@@ -16,7 +16,11 @@
         <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
         <%=form_tag "/pets/#{pet.id}/application_status", method: :patch do  %>
           <%= hidden_field_tag :approved_applicant, @application.id %>
-          <%= submit_tag "Approve for #{pet.name}", class: "button" %>
+            <% if pet.has_approved_applicant %>
+              <%= submit_tag "Approve for #{pet.name}", class: "button", disabled: true %>
+            <% else %>
+              <%= submit_tag "Approve for #{pet.name}", class: "button" %>
+            <% end %>
         <% end %>
       </div>
     <% end %>
