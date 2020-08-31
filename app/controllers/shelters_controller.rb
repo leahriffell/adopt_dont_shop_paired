@@ -7,7 +7,7 @@
       @shelter = Shelter.find(params[:id])
     end
 
-    def new 
+    def new
       @shelter = Shelter.new
     end
 
@@ -21,7 +21,7 @@
       end
     end
 
-    def edit 
+    def edit
       @shelter = Shelter.find(params[:id])
     end
 
@@ -36,7 +36,10 @@
     end
 
     def destroy
-      Shelter.destroy(params[:id])
+      shelter = Shelter.find(params[:id])
+      pets = shelter.pets
+      pets.each {|pet| Pet.destroy(pet.id)}
+      Shelter.destroy(shelter.id)
       redirect_to "/shelters"
     end
 
