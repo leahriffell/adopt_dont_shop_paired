@@ -21,15 +21,15 @@ describe Pet, type: :model do
                         )
 
     @pet_2 = @shelter_1.pets.create!(
-                                  image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
-                                  name: "Turquoise",
-                                  approximate_age: "1 year",
-                                  sex: "Male",
-                                  description: "I am looking for green pastures to roam and play in.",
-                                  adoption_status: "Adoptable",
-                                  approved_applicant: nil
-                                    )
-                                  
+                          image: "https://qph.fs.quoracdn.net/main-qimg-775e3ef3258895374fcd610163d8c8e3",
+                          name: "Turquoise",
+                          approximate_age: "1 year",
+                          sex: "Male",
+                          description: "I am looking for green pastures to roam and play in.",
+                          adoption_status: "Adoptable",
+                          approved_applicant: nil
+                        )
+
     @application = @pet_1.applications.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
@@ -60,14 +60,19 @@ describe Pet, type: :model do
     end
 
     it "can change application status to pending" do
-      @pet_1.change_to_pending
-      expect(@pet_1.adoption_status).to eq("Pending")
+      @pet_2.change_to_pending
+      expect(@pet_2.adoption_status).to eq("Pending")
     end
 
 
     it "can can check if it has an approved applicant" do
       expect(@pet_1.has_approved_applicant).to eq(true)
       expect(@pet_2.has_approved_applicant).to eq(false)
+    end
+
+    it "can change application status to adoptable" do
+      @pet_1.change_to_adoptable
+      expect(@pet_1.adoption_status).to eq("Adoptable")
     end
   end
 end

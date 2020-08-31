@@ -18,4 +18,8 @@ class Pet < ApplicationRecord
   def has_approved_applicant
     approved_applicant != nil
   end
+
+  def change_to_adoptable
+    update(adoption_status: "Adoptable")
+  end
 end
