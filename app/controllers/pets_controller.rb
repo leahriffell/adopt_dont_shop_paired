@@ -45,11 +45,17 @@ class PetsController < ApplicationController
         pet.change_to_pending
       end
       redirect_to "/applications/#{application_id}"
-    else 
+    else
       pet = Pet.find(params[:id])
-      pet.update(approved_applicant: approved_applicant_name)
-      pet.change_to_pending
-      redirect_to "/pets/#{pet.id}"
+      if pet.has_approved_applicant
+        pet.update(approved_applicant: nil)
+        pet.change_to_adoptable
+        redirect_to "/applications/#{application_id}"
+      else
+        pet.update(approved_applicant: approved_applicant_name)
+        pet.change_to_pending
+        redirect_to "/pets/#{pet.id}"
+      end
     end
   end
 

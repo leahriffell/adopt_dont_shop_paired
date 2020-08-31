@@ -29,7 +29,7 @@ describe 'application show page' do
                                   adoption_status: "Adoptable",
                                   approved_applicant: nil
                                   )
-                                    
+
     @application = Application.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
@@ -77,7 +77,7 @@ describe 'application show page' do
     end
   end
 
-  it 'can approve multiple pets at once' do 
+  it 'can approve multiple pets at once' do
 
     visit "/applications/#{@application.id}"
 
@@ -88,7 +88,7 @@ describe 'application show page' do
       click_button "Approve"
       expect(page).to have_current_path("/applications/#{@application.id}")
     end
-    
+
     visit "/pets/#{@pet_1.id}"
     expect(page).to have_content("Adoption status: Pending")
     expect(page).to have_content("On hold for Dani Coleman")
@@ -101,10 +101,24 @@ describe 'application show page' do
 
     within("#pet_on_app-#{@pet_1.id}") do
       expect(page).to have_no_button("Approve for #{@pet_1.name}")
-      expect(page).to have_content("Cannot select as application is pending")
-    end 
+      expect(page).to have_content("Application is pending")
+    end
 
     expect(page).to have_button("Approve for #{@pet_2.name}")
     expect(page).to have_select(:pet_names, :options => ["#{@pet_2.name}"])
+  end
+
+  it 'can unapprove the application for that pet' do
+    visit "/applications/#{@application.id}"
+    click_button "Approve for #{@pet_1.name}"
+    visit "/applications/#{@application.id}"
+
+    click_button "Unapprove for #{@pet_1.name}"
+
+    expect(page).to have_current_path("/applications/#{@application.id}")
+    expect(page).to have_button("Approve for #{@pet_1.name}")
+    visit "/pets/#{@pet_1.id}"
+    expect(page).to have_content("Adoption status: Adoptable")
+    expect(page).to have_no_content("On hold for Dani Coleman")
   end
 end
