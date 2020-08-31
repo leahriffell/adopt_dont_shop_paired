@@ -13,6 +13,6 @@ class Shelter < ApplicationRecord
   end
 
   def has_pending_apps
-    pets.select {|pet| pet.has_apps}.count != 0
+    pets.select {|pet| pet.is_pending}.count != 0
   end
 end
