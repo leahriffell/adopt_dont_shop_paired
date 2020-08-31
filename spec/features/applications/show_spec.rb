@@ -99,7 +99,6 @@ describe 'application show page' do
     click_button "Approve for #{@pet_1.name}"
     visit "/applications/#{@application.id}"
 
-    save_and_open_page
     expect(page).to have_no_button("Approve for #{@pet_1.name}")
     expect(page).to have_button("Approve for #{@pet_2.name}")
   end

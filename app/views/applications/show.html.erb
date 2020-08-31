@@ -17,7 +17,7 @@
         <%=form_tag "/pets/#{pet.id}/application_status", method: :patch do  %>
           <%= hidden_field_tag :approved_applicant, @application.id %>
             <% if pet.has_approved_applicant %>
-              <%= submit_tag "Approve for #{pet.name}", class: "button", disabled: true %>
+              <%= submit_tag "Approve for #{pet.name}", class: "button", disabled: true, title: "#{pet.name} already has a pending application." %>
             <% else %>
               <%= submit_tag "Approve for #{pet.name}", class: "button" %>
             <% end %>
