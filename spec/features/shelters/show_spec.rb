@@ -132,7 +132,7 @@ RSpec.describe "show shelter by id page", type: :feature do
     @review_1 = @shelter_1.reviews.create!(
                                           title: "Mountains of Love! <3",
                                           rating: 5,
-                                          content: "Super clean, well-facilitated, and healthy pups.", 
+                                          content: "Super clean, well-facilitated, and healthy pups.",
                                           optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg"
                                         )
 
@@ -141,9 +141,35 @@ RSpec.describe "show shelter by id page", type: :feature do
                                           rating: 2,
                                           content: "it was weird."
                                         )
-    
+
     visit "/shelters/#{@shelter_1.id}"
 
     expect(page).to have_content("Average rating: #{@shelter_1.avg_rating}")
+  end
+
+  it "shelter cannot be deleted with pending applications" do
+    @pet_2 = Pet.create!(
+                          image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
+                          name: "Bernard",
+                          approximate_age: "1",
+                          sex: "Male",
+                          shelter_id: @shelter_1.id,
+                          adoption_status: "Pending",
+                          approved_applicant: "Paul Bunyan"
+                        )
+    @application = @pet_2.applications.create!(
+                                  name: "Dani Coleman",
+                                  address: "123 Road Dr.",
+                                  city: "Arvada",
+                                  state: "CO",
+                                  zip: "80005",
+                                  phone_number: "555-555-5555",
+                                  description: "I love animals!!!!!"
+                                )
+
+    visit "/shelters/#{@shelter_1.id}"
+
+    expect(page).to have_no_link("Delete Shelter")
+    expect(page).to have_content("Shelter has pending applications")
   end
 end

@@ -7,8 +7,11 @@
 </div>
 
 <a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a></br>
-<%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"} %>
-
+<% if @shelter.has_pending_apps %>
+  <p class="explanation">Shelter has pending applications</p>
+<% else %>
+  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"}%>
+<% end %>
 <hr><br>
 
 <h2>Reviews:</h2>
