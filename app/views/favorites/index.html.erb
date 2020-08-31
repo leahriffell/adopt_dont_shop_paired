@@ -4,8 +4,8 @@
   <% if cart.no_favorites  %>
     <h2>No Furry Friends Here Yet</h2>
   <% else %>
-    <%= link_to "Apply to adopt", "/applications/new" %><br>
-    <%= link_to "Remove All Pets From Favorites", "/favorites/all", method: :delete %><br>
+    <%= link_to "Apply to adopt", "/applications/new", class: "button" %><br><br><br>
+    <%= link_to "Remove all from favorites", "/favorites/all", method: :delete %><br>
     <% @fav_pets.each do |pet| %>
     <div id="pet<%= pet.id %>" class="content-card">
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
@@ -19,12 +19,13 @@
     <% end %>
   <% end %>
 </section><br>
+
+<h1>Furry Friends With Applications</h1>
 <section id="pet_apps">
-  <h1>Furry Friends With Applications</h1>
   <% if @pets_with_apps != nil %>
     <ul>
       <% @pets_with_apps.each do |pet|  %>
-        <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
+        <li class="list-of-apps"><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
       <% end %>
     </ul>
   <% end %>

@@ -64,14 +64,32 @@ form input[type="text"] {
   border: none;
   border-bottom: 1px solid black;
   font-family: 'Spartan', sans-serif;
+  font-size: 0.9em;
   padding: 5px;
   display: block;
-  width: 400px;
+  width: 40vw
 }
 
 form input[type="text"]:focus {
   border-bottom: 2px solid;
   outline: none;
+}
+
+select {
+  margin: 10px 0 0 0 ;
+  padding: 10px 10px 5px 5px;
+  width: 40vw;
+  border-radius: 10px;
+}
+
+option {
+  font-family: 'Spartan', sans-serif;
+  font-size: 1.05em;
+  margin-bottom: 10px;
+}
+
+option:checked {
+  font-weight: 500;
 }
 
 .content-card {
@@ -92,12 +110,16 @@ form input[type="text"]:focus {
   box-shadow: 0 24px 36px rgba(0,0,0,0.11),
 }
 
+.app-card {
+  display: block;
+}
+
 .show-pet {
   max-height: 40vh;
 }
 
-.delete-icon {
-  width: 25px;
+.li-label {
+  font-weight: 500;
 }
 
 .image {
@@ -113,10 +135,15 @@ form input[type="text"]:focus {
   background-color: #38b6ff;
   color: white;
   font-size: 1.05em;
-  margin-top: 20px;
+  /* margin-top: 15px; */
   border: none;
   border-radius: 5px;
   padding: 8px; 
+}
+
+.disabled {
+  color: #708090;
+  background-color: #DCDCDC;
 }
 
 .divider {
@@ -126,6 +153,17 @@ form input[type="text"]:focus {
 .error-message {
   color: red;
   font-weight: 500;
+}
+
+.explanation {
+  font-style: italic;
+  color:#708090;
+  font-size: 0.8em;
+}
+
+.list-of-apps {
+  font-size: 1.2em;
+  margin: 15px 0 0 15px;
 }
 
 #header-logo {

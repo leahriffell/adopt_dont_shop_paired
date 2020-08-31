@@ -1,19 +1,18 @@
-<h1>Application for <%= @application.name  %></h1>
+<h1><%= @application.name %>'s Application</h1>
 
 <ul>
-  <li>Name: <%= @application.name %></li>
-  <li>Address: <%= @application.address %></li>
-  <li>City: <%= @application.city %></li>
-  <li>State: <%= @application.state %></li>
-  <li>Zip: <%= @application.zip %></li>
-  <li>Phone Number: <%= @application.phone_number %></li>
-  <li>Description: <%= @application.description %></li><br>
-  <li>Pets:</li>
-    <h4>Approve individually:</h4>
-
+  <li><span class="li-label">Name: </span><%= @application.name %></li>
+  <li><span class="li-label">Address: </span><%= @application.address %></li>
+  <li><span class="li-label">City: </span><%= @application.city %></li>
+  <li><span class="li-label">State: </span><%= @application.state %></li>
+  <li><span class="li-label">Zip: </span><%= @application.zip %></li>
+  <li><span class="li-label">Phone number: </span><%= @application.phone_number %></li>
+  <li><span class="li-label">Description: </span><%= @application.description %></li><br>
+  <li><span class="li-label">Pet(s) on application: </span></li>
+    <h3>Approve individually:</h3>
     <% @pets.each do |pet|  %>
-      <div id="pet_on_app-<%= pet.id %>" class="content-card">
-        <li><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></li>
+      <div id="pet_on_app-<%= pet.id %>" class="content-card app-card">
+        <h4 ><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h4>
         <%=form_tag "/pets/#{pet.id}/application_status", method: :patch do  %>
           <%= hidden_field_tag :approved_applicant, @application.id %>
             <% if pet.has_approved_applicant %>
@@ -26,7 +25,7 @@
       </div>
     <% end %>
 
-    <h4>Approve multiple:</h4>
+    <h3>Approve multiple:</h3>
     <div id="select_multiple">
       <p class="explanation"> Pets with pending applications will not be shown for approval.</p>
       <%= form_tag "/pets/:id/application_status", method: :patch, class: "form" do %>
