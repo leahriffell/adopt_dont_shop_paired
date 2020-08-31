@@ -37,9 +37,7 @@
 
     def destroy
       shelter = Shelter.find(params[:id])
-      pets = shelter.pets
-      pets.each {|pet| Pet.destroy(pet.id)}
-      Shelter.destroy(shelter.id)
+      shelter.delete_shelter_and_associations(shelter.id)
       redirect_to "/shelters"
     end
 
