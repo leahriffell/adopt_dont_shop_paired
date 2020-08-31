@@ -99,7 +99,12 @@ describe 'application show page' do
     click_button "Approve for #{@pet_1.name}"
     visit "/applications/#{@application.id}"
 
-    expect(page).to have_no_button("Approve for #{@pet_1.name}")
+    within("#pet_on_app-#{@pet_1.id}") do
+      expect(page).to have_no_button("Approve for #{@pet_1.name}")
+      expect(page).to have_content("Cannot select as application is pending")
+    end 
+
     expect(page).to have_button("Approve for #{@pet_2.name}")
+    expect(page).to have_select(:pet_names, :options => ["#{@pet_2.name}"])
   end
 end
