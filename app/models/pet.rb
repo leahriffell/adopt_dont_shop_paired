@@ -14,4 +14,8 @@ class Pet < ApplicationRecord
   def change_to_pending
     update(adoption_status: "Pending")
   end
+
+  def has_approved_applicant
+    approved_applicant != nil
+  end
 end
