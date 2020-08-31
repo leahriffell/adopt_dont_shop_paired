@@ -1,4 +1,4 @@
-class Shelter < ApplicationRecord 
+class Shelter < ApplicationRecord
   has_many :pets
   has_many :reviews
 
@@ -10,5 +10,9 @@ class Shelter < ApplicationRecord
 
   def avg_rating
     reviews.average(:rating)
-  end  
+  end
+
+  def has_pending_apps
+    pets.select {|pet| pet.has_apps}.count != 0
+  end
 end
