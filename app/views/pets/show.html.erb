@@ -3,11 +3,13 @@
 <%= image_tag @pet.image, class: "show-pet" %>
 
 <ul>
-  <li>About me: <%= @pet.description %></li>
-  <li>Age: <%= @pet.approximate_age %></li>
-  <li>Sex: <%= @pet.sex %></li>
-  <li>Adoption status: <%= @pet.adoption_status %></li>
-  <li>On hold for <%= @pet.approved_applicant %></li>
+  <li><span class="li-label">About me: </span><%= @pet.description %></li>
+  <li><span class="li-label">Approximate age: </span><%= @pet.approximate_age %></li>
+  <li><span class="li-label">Sex: </span><%= @pet.sex %></li>
+  <li><span class="li-label">Adoption status: </span><%= @pet.adoption_status %></li>
+  <% if @pet.has_approved_applicant %>
+    <li class="explanation">On hold for <%= @pet.approved_applicant %></li>
+  <% end %>  
 </ul>
 
 <hr><br>

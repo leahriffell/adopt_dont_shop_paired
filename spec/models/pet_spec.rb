@@ -16,7 +16,8 @@ describe Pet, type: :model do
                           approximate_age: "15 weeks",
                           sex: "Female",
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
-                          adoption_status: "adoptable",
+                          adoption_status: "Pending",
+                          approved_applicant: "Paul Bunyan"
                         )
 
     @pet_2 = @shelter_1.pets.create!(
@@ -25,8 +26,10 @@ describe Pet, type: :model do
                                   approximate_age: "1 year",
                                   sex: "Male",
                                   description: "I am looking for green pastures to roam and play in.",
-                                  adoption_status: "adoptable"
+                                  adoption_status: "Adoptable",
+                                  approved_applicant: nil
                                     )
+                                  
     @application = @pet_1.applications.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
@@ -60,6 +63,11 @@ describe Pet, type: :model do
       @pet_1.change_to_pending
       expect(@pet_1.adoption_status).to eq("Pending")
     end
-  end
 
+
+    it "can can check if it has an approved applicant" do
+      expect(@pet_1.has_approved_applicant).to eq(true)
+      expect(@pet_2.has_approved_applicant).to eq(false)
+    end
+  end
 end

@@ -1,15 +1,15 @@
 <h1><%= @shelter.name %></h1>
 <h4><a href="/shelters/<%= @shelter.id %>/pets">Pets at <%= @shelter.name %></a></h4><br>
 <h2>Address:</h2>
-<p><%= @shelter.address %></p>
-<p><%= "#{@shelter.city}, #{@shelter.state} #{@shelter.zip}" %></p>
+<div class="address">
+  <p><%= @shelter.address %></p>
+  <p><%= "#{@shelter.city}, #{@shelter.state} #{@shelter.zip}" %></p>
+</div>
+
+<a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a></br>
+<%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"} %>
 
 <hr><br>
-
-<div>
-  <a href="/shelters/<%= @shelter.id %>/edit">Update Shelter</a></br>
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"} %>
-</div>
 
 <h2>Reviews:</h2>
 <h4>Average rating: <%= @shelter.avg_rating %></h4>

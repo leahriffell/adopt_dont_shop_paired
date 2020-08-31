@@ -2,7 +2,9 @@
 
 <% if @pet.has_apps%>
   <% @applications.each do |application| %>
-    <%= link_to "#{application.name}", "/applications/#{application.id}" %>
+  <ul>
+    <li class="list-of-apps"><%= link_to "#{application.name}", "/applications/#{application.id}"%></li>
+  </ul>
   <% end %>
 <% else %>
   <h2>No applications yet. Still looking for my forever friend.</h2>

@@ -1,6 +1,6 @@
 <%= form_tag path, method: method, class: "form" do %>
 
-  <%= label_tag :pet_names %>
+  <%= label_tag :pet_names %><br>
   <%= select_tag :pet_names, options_for_select(@fav_pets.collect{ |pet| [pet.name, pet.id] }), {:multiple => true} %><br><br>
 
   <%= label_tag :name %>
