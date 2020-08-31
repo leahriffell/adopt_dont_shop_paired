@@ -16,7 +16,8 @@ describe 'application show page' do
                                   approximate_age: "15 weeks",
                                   sex: "Female",
                                   description: "I am fluffy and so cute. I need someone to be my friend forever!!",
-                                  adoption_status: "adoptable"
+                                  adoption_status: "Adoptable",
+                                  approved_applicant: nil
                         )
 
     @pet_2 = @shelter_1.pets.create!(
@@ -25,8 +26,10 @@ describe 'application show page' do
                                   approximate_age: "1 year",
                                   sex: "Male",
                                   description: "I am looking for green pastures to roam and play in.",
-                                  adoption_status: "adoptable"
-                                    )
+                                  adoption_status: "Adoptable",
+                                  approved_applicant: nil
+                                  )
+                                    
     @application = Application.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
@@ -89,5 +92,15 @@ describe 'application show page' do
     visit "/pets/#{@pet_1.id}"
     expect(page).to have_content("Adoption status: Pending")
     expect(page).to have_content("On hold for Dani Coleman")
+  end
+
+  it 'can prevent a pet with pending application from being approved' do
+    visit "/applications/#{@application.id}"
+    click_button "Approve for #{@pet_1.name}"
+    visit "/applications/#{@application.id}"
+
+    save_and_open_page
+    expect(page).to have_no_button("Approve for #{@pet_1.name}")
+    expect(page).to have_button("Approve for #{@pet_2.name}")
   end
 end
