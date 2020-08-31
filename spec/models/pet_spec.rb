@@ -64,6 +64,10 @@ describe Pet, type: :model do
       expect(@pet_2.adoption_status).to eq("Pending")
     end
 
+    it "can see if pet has pending adoption status" do
+      expect(@pet_1.is_pending).to eq(true)
+      expect(@pet_2.is_pending).to eq(false)
+    end 
 
     it "can can check if it has an approved applicant" do
       expect(@pet_1.has_approved_applicant).to eq(true)
