@@ -9,7 +9,7 @@
   <li><span class="li-label">Adoption status: </span><%= @pet.adoption_status %></li>
   <% if @pet.has_approved_applicant %>
     <li class="explanation">On hold for <%= @pet.approved_applicant %></li>
-  <% end %>  
+  <% end %>
 </ul>
 
 <hr><br>
@@ -22,5 +22,9 @@
   <% end %>
   <%= link_to "Applications for #{@pet.name}", "/pets/#{@pet.id}/applications" %><br>
   <%= link_to "Update Pet", "/pets/#{@pet.id}/edit" %><br>
-  <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"} %>
+  <% if @pet.is_pending %>
+    <p class="explanation">Pet has pending application</p>
+  <% else %>
+    <%= link_to "Delete Pet", "/pets/#{@pet.id}", method: :delete, data: {confirm: "Are you sure you want to delete this pet?"} %>
+  <% end %>
 </section>

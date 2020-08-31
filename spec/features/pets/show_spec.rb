@@ -86,4 +86,21 @@ RSpec.describe "show a shelter's pets page", type: :feature do
 
     expect(current_path).to eq("/pets/#{@pet_1.id}/applications")
   end
+
+  it "cannot cannot delete pet with approved application" do
+    @pet_2 = Pet.create!(
+                          image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
+                          name: "Bernard",
+                          approximate_age: "1",
+                          sex: "Male",
+                          shelter_id: @shelter_1.id,
+                          adoption_status: "Pending"
+                        )
+    visit "/pets"
+
+    within("#pet-#{@pet_2.id}") do
+      expect(page).to have_no_link("Delete Pet")
+      expect(page).to have_content("Pet has pending application")
+    end
+  end
 end
