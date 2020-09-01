@@ -9,6 +9,7 @@ describe Shelter, type: :model do
                                 state: "CO",
                                 zip: "80247"
                               )
+
     @shelter_2 = Shelter.create!(
                                 name: "Espiritu Alpacas",
                                 address: "8221 S Blue Creek Rd",
@@ -16,15 +17,33 @@ describe Shelter, type: :model do
                                 state: "CO",
                                 zip: "80439"
                                 )
+
+    @shelter_3 = Shelter.create!(
+                                  name: "Save the Giants",
+                                  address: "PO Box 664",
+                                  city: "Broomfield",
+                                  state: "CO",
+                                  zip: "80038"
+                                  )
+
+    @shelter_4 = Shelter.create!(
+                                  name: "Cat Care Society",
+                                  address: "5787 W 6th Ave",
+                                  city: "Lakewood",
+                                  state: "CO",
+                                  zip: "80214"
+                                  )
+
     @pet_1 = Pet.create!(
-                          image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
-                          name: "Fluffy",
-                          approximate_age: "15 weeks",
-                          sex: "Female",
-                          shelter_id: @shelter.id,
-                          description: "I am fluffy and so cute. I need someone to be my friend forever!!",
-                          adoption_status: "adoptable"
-                        )
+                        image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                        name: "Fluffy",
+                        approximate_age: "15 weeks",
+                        sex: "Female",
+                        shelter_id: @shelter.id,
+                        description: "I am fluffy and so cute. I need someone to be my friend forever!!",
+                        adoption_status: "adoptable"
+                      )
+
     @pet_2 = Pet.create!(
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
                           name: "Bernard",
@@ -43,10 +62,23 @@ describe Shelter, type: :model do
                               )
 
     @review_2 = @shelter.reviews.create!(
-                                title: "meh",
-                                rating: 2,
-                                content: "it was weird."
-                              )
+                              title: "meh",
+                              rating: 2,
+                              content: "it was weird."
+                            )
+
+    @review_3 = @shelter_2.reviews.create!(
+      title: "Love my new friend!",
+      rating: 5,
+      content: "They take such good care of their doggies."
+    )
+
+    @review_4 = @shelter_3.reviews.create!(
+      title: "Stinky",
+      rating: 1,
+      content: "The facility smelled so bad."
+    )
+
     @application = @pet_2.applications.create!(
                                 name: "Dani Coleman",
                                 address: "123 Road Dr.",
@@ -71,21 +103,30 @@ describe Shelter, type: :model do
     it { should validate_presence_of :zip }
   end
 
-  describe "class methods" do
+  describe "class methods" do 
+    it "can get top 3 highest reviewed shelters" do
+      expect(Shelter.top_three).to eq([@shelter_2, @shelter, @shelter_3])
+    end
+  end
+    
+  describe "instance methods" do
+    it "can see if a shelter has any reviews" do
+      expect(@shelter.has_reviews).to eq(true)
+      expect(@shelter_4.has_reviews).to eq(false)
+    end
 
     it "can get average review rating for a shelter" do
       expect(@shelter.avg_rating).to eq(3.5)
+      expect(@shelter_4.avg_rating).to eq("No reviews yet")
     end
-  end
 
-  describe "instance methods" do
     it "can see if a shelter has any pending applications" do
       expect(@shelter.has_pending_apps).to eq(false)
       expect(@shelter_2.has_pending_apps).to eq(true)
     end
 
     it "can delete all associations of a shelter" do
-      expect(@shelter.delete_shelter_and_associations(@shelter.id))
+      @shelter.delete_shelter_and_associations(@shelter.id)
       expect(Pet.where(id: @pet_1.id)).to eq([])
       expect(Review.where(id: @review_1.id)).to eq([])
       expect(Review.where(id: @review_2.id)).to eq([])
