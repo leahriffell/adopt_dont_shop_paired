@@ -22,12 +22,13 @@ RSpec.describe "shelters index page", type: :feature do
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
                           name: "Bernard",
                           approximate_age: "1",
+                          description: "I like to spit!",
                           sex: "Male",
                           shelter_id: @shelter_2.id,
                           adoption_status: "Pending",
                           approved_applicant: "Paul Bunyan"
                         )
-                        
+
     @application = @pet_2.applications.create!(
                                 name: "Dani Coleman",
                                 address: "123 Road Dr.",

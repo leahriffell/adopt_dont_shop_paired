@@ -3,6 +3,12 @@ class Pet < ApplicationRecord
   has_many :application_pets
   has_many :applications, through: :application_pets
 
+  validates_presence_of :name
+  validates_presence_of :image
+  validates_presence_of :description
+  validates_presence_of :approximate_age
+  validates_presence_of :sex
+  
   def self.pets_with_apps
     Pet.joins(:applications)
   end

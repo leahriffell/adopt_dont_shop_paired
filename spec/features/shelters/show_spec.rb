@@ -131,6 +131,7 @@ RSpec.describe "show shelter by id page", type: :feature do
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
                           name: "Bernard",
                           approximate_age: "1",
+                          description: "I like to spit!",
                           sex: "Male",
                           shelter_id: @shelter_1.id,
                           adoption_status: "Pending",

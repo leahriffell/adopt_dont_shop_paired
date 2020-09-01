@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "edit pet page", type: :feature do 
+RSpec.describe "edit pet page", type: :feature do
   before :each do
     @shelter_1 = Shelter.create!(
                                   name: "Rocky Mountain Puppy Rescue",
@@ -28,7 +28,7 @@ RSpec.describe "edit pet page", type: :feature do
     expect(find_field(:description).value).to eq "I am fluffy and so cute. I need someone to be my friend forever!!"
     expect(find_field(:approximate_age).value).to eq "15 weeks"
     expect(find_field(:sex).value).to eq "Female"
-    
+
     fill_in(:name, with: "Fluffball")
     fill_in(:approximate_age, with: "17 weeks")
     click_button("Update Pet")
@@ -40,5 +40,13 @@ RSpec.describe "edit pet page", type: :feature do
     visit "/pets/"
     expect(page).to have_content("Fluffball")
     expect(page).to have_content("17 weeks")
+  end
+
+  it "can display error message for missing fields" do
+    visit "/pets/#{@pet_1.id}/edit"
+    fill_in(:name, with: "")
+    click_button("Update Pet")
+    expect(page).to have_current_path("/pets/#{@pet_1.id}/edit")
+    expect(page).to have_content("Please fill in: name")
   end
 end

@@ -67,7 +67,7 @@ describe Pet, type: :model do
     it "can see if pet has pending adoption status" do
       expect(@pet_1.is_pending).to eq(true)
       expect(@pet_2.is_pending).to eq(false)
-    end 
+    end
 
     it "can can check if it has an approved applicant" do
       expect(@pet_1.has_approved_applicant).to eq(true)
@@ -78,5 +78,12 @@ describe Pet, type: :model do
       @pet_1.change_to_adoptable
       expect(@pet_1.adoption_status).to eq("Adoptable")
     end
+
+    # it "can delete all associations of a pet" do
+    #   subject { Cart.new({'1' => 1, '2' => 1}) }
+    #   intial_count = subject.total_count
+    #   @pet_1.delete_pet_and_associations(@pet_1.id, subject)
+    #   expect(subject.total_count).to eq(intial_count - 1)
+    # end
   end
 end
