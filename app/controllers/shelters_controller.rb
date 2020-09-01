@@ -32,7 +32,7 @@
       if shelter.update(shelters_params)
         redirect_to "/shelters/#{shelter.id}"
       else
-        flash[:notice] = "Please fill out all fields."
+        error_message
         redirect_to "/shelters/#{shelter.id}/edit"
       end
     end

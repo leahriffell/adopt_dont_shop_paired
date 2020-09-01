@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "edit shelter page", type: :feature do 
+RSpec.describe "edit shelter page", type: :feature do
   before :each do
     @shelter_1 = Shelter.create!(
                                   name: "Rocky Mountain Puppy Rescue",
@@ -19,7 +19,7 @@ RSpec.describe "edit shelter page", type: :feature do
     expect(find_field("City").value).to eq "Aurora"
     expect(find_field("State").value).to eq "CO"
     expect(find_field("Zip").value).to eq "80247"
-    
+
     fill_in(:name, with: "Rocky Mtn Puppy Rescue")
     fill_in(:city, with: "Evergreen")
     click_button("Update Shelter")
@@ -40,7 +40,7 @@ RSpec.describe "edit shelter page", type: :feature do
     click_button("Update Shelter")
 
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}/edit")
-    expect(page).to have_content("Please fill out all fields.")    
+    expect(page).to have_content("Please fill in: name")    
     expect(page).to have_button("Update Shelter")
   end
 end
