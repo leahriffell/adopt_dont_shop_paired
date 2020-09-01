@@ -14,6 +14,7 @@ RSpec.describe "application", type: :feature do
                           image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
                           name: "Fluffy",
                           approximate_age: "15 weeks",
+                          description: "I am fluffy!",
                           sex: "Female",
                           shelter_id: @shelter_1.id,
                         )

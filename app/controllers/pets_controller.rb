@@ -15,8 +15,12 @@ class PetsController < ApplicationController
   def create
     shelter = Shelter.find(params[:id])
     pet = shelter.pets.create(pet_params)
-    pet.save
-    redirect_to "/shelters/#{shelter.id}/pets"
+    if !pet.save
+      error_message
+      redirect_to "/shelters/#{shelter.id}/pets/new"
+    else
+      redirect_to "/shelters/#{shelter.id}/pets"
+    end
   end
 
   def edit
@@ -34,7 +38,7 @@ class PetsController < ApplicationController
     pet = Pet.find(params[:id])
     if pet.has_apps
       Application.find(pet.application_pets[0].application_id).pets.delete(pet)
-    end 
+    end
     Pet.destroy(params[:id])
     cart.remove_pet(pet.id)
     redirect_to "/pets"
@@ -68,5 +72,15 @@ class PetsController < ApplicationController
 
   def pet_params
     params.permit(:name, :image, :description, :approximate_age, :sex)
+  end
+
+  def error_message
+    messages = [""]
+    messages << "image " if params[:image].empty?
+    messages << "name " if params[:name].empty?
+    messages << "age " if params[:approximate_age].empty?
+    messages << "description " if params[:description].empty?
+    messages << "sex " if params[:sex].empty?
+    flash[:error] = "Please fill in: #{messages}"
   end
 end
