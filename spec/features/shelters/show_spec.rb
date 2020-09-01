@@ -24,7 +24,7 @@ RSpec.describe "show shelter by id page", type: :feature do
                         description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                         adoption_status: "adoptable"
                       )
-                      
+
     @application_1 = @pet_1.applications.create!(
                                   name: "Paul Bunyan",
                                   address: "12 Big Tree Ln",
@@ -190,6 +190,11 @@ RSpec.describe "show shelter by id page", type: :feature do
 
     expect(page).to have_no_link("Delete Shelter")
     expect(page).to have_content("Shelter has pending applications")
+  end
+
+  it "can get count of applications for that shelter" do
+    visit "/shelters/#{@shelter_1.id}"
+    expect(page).to have_content("Applications on File: 2")
   end
 
 end
