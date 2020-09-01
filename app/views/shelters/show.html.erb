@@ -12,6 +12,7 @@
 <% else %>
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"}%>
 <% end %>
+<h4>Applications on File: <%= @shelter.count_of_apps %></h4>
 <hr><br>
 
 <h2>Reviews:</h2>
