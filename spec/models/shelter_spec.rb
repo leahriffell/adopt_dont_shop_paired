@@ -134,5 +134,10 @@ describe Shelter, type: :model do
       expect(Review.where(id: @review_2.id)).to eq([])
       expect(Shelter.where(id: @shelter.id)).to eq([])
     end
+
+    it "can get number of applications at a shelter" do
+      expect(@shelter_2.count_of_apps).to eq(1)
+      expect(@shelter.count_of_apps).to eq(0)
+    end
   end
 end
