@@ -19,6 +19,16 @@ RSpec.describe 'favorites index page' do
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "adoptable",
                         )
+
+    @pet_2 = Pet.create!(
+                          image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
+                          name: "Bernard",
+                          approximate_age: "1",
+                          sex: "Male",
+                          shelter_id: @shelter_1.id,
+                          adoption_status: "Pending"
+                        )
+
     @application = @pet_1.applications.create!(
                           name: "Dani Coleman",
                           address: "123 Road Dr.",
@@ -119,5 +129,14 @@ RSpec.describe 'favorites index page' do
     within("#pet_apps") do
       expect(page).to have_link(@pet_1.name)
     end
+  end
+
+  it 'can be removed when a pet is deleted' do
+    visit "/pets/#{@pet_1.id}"
+    click_link "Add to Favorites"
+    click_link "Delete Pet"
+    visit '/favorites'
+    expect(page).to have_no_content(@pet_1.name)
+    expect(page).to have_link("Favorites(0)")
   end
 end
