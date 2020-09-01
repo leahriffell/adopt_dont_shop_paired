@@ -40,11 +40,7 @@ class PetsController < ApplicationController
 
   def destroy
     pet = Pet.find(params[:id])
-    if pet.has_apps
-      Application.find(pet.application_pets[0].application_id).pets.delete(pet)
-    end
-    Pet.destroy(params[:id])
-    cart.remove_pet(pet.id)
+    pet.delete_pet_and_associations(pet, cart)
     redirect_to "/pets"
   end
 

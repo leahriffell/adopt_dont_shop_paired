@@ -8,7 +8,7 @@ class Pet < ApplicationRecord
   validates_presence_of :description
   validates_presence_of :approximate_age
   validates_presence_of :sex
-  
+
   def self.pets_with_apps
     Pet.joins(:applications)
   end
@@ -31,5 +31,13 @@ class Pet < ApplicationRecord
 
   def change_to_adoptable
     update(adoption_status: "Adoptable")
+  end
+
+  def delete_pet_and_associations(pet, cart)
+    if pet.has_apps
+      Application.find(pet.application_pets[0].application_id).pets.delete(pet)
+    end
+    cart.remove_pet(pet.id)
+    Pet.destroy(pet.id)
   end
 end

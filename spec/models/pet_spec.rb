@@ -79,11 +79,11 @@ describe Pet, type: :model do
       expect(@pet_1.adoption_status).to eq("Adoptable")
     end
 
-    # it "can delete all associations of a pet" do
-    #   subject { Cart.new({'1' => 1, '2' => 1}) }
-    #   intial_count = subject.total_count
-    #   @pet_1.delete_pet_and_associations(@pet_1.id, subject)
-    #   expect(subject.total_count).to eq(intial_count - 1)
-    # end
+    it "can delete all associations of a pet" do
+      cart = Cart.new({"#{@pet_1.id}" => 1, "#{@pet_2.id}" => 1})
+      @pet_1.delete_pet_and_associations(@pet_1, cart)
+      expect(cart.total_count).to eq(1)
+      expect(@application.pets).to eq([])
+    end
   end
 end
