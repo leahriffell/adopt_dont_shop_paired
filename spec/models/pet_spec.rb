@@ -59,6 +59,11 @@ describe Pet, type: :model do
       expect(@pet_2.has_apps).to eq(false)
     end
 
+    it "can see number of applications" do
+      expect(@pet_1.count_of_apps).to eq(1)
+      expect(@pet_2.count_of_apps).to eq(0)
+    end
+
     it "can change application status to pending" do
       @pet_2.change_to_pending
       expect(@pet_2.adoption_status).to eq("Pending")

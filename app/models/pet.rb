@@ -17,6 +17,10 @@ class Pet < ApplicationRecord
     applications.count > 0
   end
 
+  def count_of_apps
+    applications.count
+  end
+
   def is_pending
     adoption_status == "Pending"
   end
