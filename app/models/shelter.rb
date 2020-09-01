@@ -32,6 +32,12 @@ class Shelter < ApplicationRecord
     pets.select {|pet| pet.is_pending}.count != 0
   end
 
+  def count_of_apps
+    applications = []
+    pets.each {| pet| applications << pet.applications}
+    applications.flatten.uniq.count
+  end
+
   def delete_shelter_and_associations(shelter_id, cart)
     pets.each {|pet| pet.delete_pet_and_associations(pet, cart)}
     reviews.each {|review| Review.destroy(review.id)}
