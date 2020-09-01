@@ -10,15 +10,16 @@
 
     def new
       @shelter = Shelter.new
+
     end
 
     def create
       shelter = Shelter.create(shelters_params)
-      if shelter.save
-        redirect_to "/shelters"
-      else
-        flash[:notice] = "Please fill out all fields."
+      if !shelter.save
+        error_message
         redirect_to "/shelters/new"
+      else
+        redirect_to "/shelters"
       end
     end
 
@@ -31,7 +32,7 @@
       if shelter.update(shelters_params)
         redirect_to "/shelters/#{shelter.id}"
       else
-        flash[:notice] = "Please fill out all fields."
+        error_message
         redirect_to "/shelters/#{shelter.id}/edit"
       end
     end
@@ -46,5 +47,15 @@
 
     def shelters_params
       params.permit(:name, :address, :city, :state, :zip)
+    end
+
+    def error_message
+      messages = []
+      messages << "name" if params[:name].empty?
+      messages << "address" if params[:address].empty?
+      messages << "city" if params[:city].empty?
+      messages << "state" if params[:state].empty?
+      messages << "zip" if params[:zip].empty?
+      flash[:error] = "Please fill in: #{messages.join(", ")}"
     end
   end
