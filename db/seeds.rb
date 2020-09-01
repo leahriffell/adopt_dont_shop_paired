@@ -19,6 +19,30 @@ shelter_1 = Shelter.create!(
   zip: "80247"
 )
 
+shelter_2 = Shelter.create!(
+  name: "Espiritu Alpacas",
+  address: "8221 S Blue Creek Rd",
+  city: "Evergreen",
+  state: "CO",
+  zip: "80439"
+  )
+
+shelter_3 = Shelter.create!(
+    name: "Save the Giants",
+    address: "PO Box 664",
+    city: "Broomfield",
+    state: "CO",
+    zip: "80038"
+    )
+
+shelter_4 = Shelter.create!(
+    name: "Cat Care Society",
+    address: "5787 W 6th Ave",
+    city: "Lakewood",
+    state: "CO",
+    zip: "80214"
+    )
+
 review = Review.create!(
   title: "Mountains of Love <3!",
   rating: 5,
@@ -26,6 +50,31 @@ review = Review.create!(
   optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
   shelter_id: shelter_1.id
 )
+
+review_1 = shelter_1.reviews.create!(
+  title: "Mountains of Love! <3",
+  rating: 5,
+  content: "Super clean, well-facilitated, and healthy pups.",
+  optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg"
+)
+
+review_2 = shelter_1.reviews.create!(
+  title: "meh",
+  rating: 2,
+  content: "it was weird."
+  )
+
+review_3 = shelter_2.reviews.create!(
+  title: "Love my new friend!",
+  rating: 5,
+  content: "They take such good care of their doggies."
+  )
+
+review_4 = shelter_3.reviews.create!(
+  title: "Stinky",
+  rating: 1,
+  content: "The facility smelled so bad."
+  )
 
 pet_1 = Pet.create!(
   image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
