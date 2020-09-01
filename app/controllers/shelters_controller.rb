@@ -1,6 +1,7 @@
   class SheltersController < ApplicationController
     def index
-      @shelters = Shelter.all
+      @top_shelters = Shelter.top_three
+      @non_top_shelters = Shelter.all.select {|shelter| !@top_shelters.include?(shelter)}
     end
 
     def show
