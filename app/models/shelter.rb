@@ -11,7 +11,7 @@ class Shelter < ApplicationRecord
   def self.top_three
     avg_ratings = Shelter.select('shelters.*, reviews.*').joins(:reviews).group(:id).average(:rating)
     
-    avg_ratings_sorted = avg_ratings.sort_by {|shelter, avg_rating| -avg_rating}.to_h
+    avg_ratings_sorted = avg_ratings.sort_by {|shelter, avg_rating| -avg_rating}[0..2]
 
     avg_ratings_sorted.map {|shelter, avg_rating| Shelter.find(shelter)}
   end
