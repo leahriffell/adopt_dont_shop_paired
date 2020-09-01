@@ -37,6 +37,13 @@ RSpec.describe "shelters index page", type: :feature do
                                 phone_number: "555-555-5555",
                                 description: "I love animals!!!!!"
                               )
+    
+    @review_1 = @shelter_1.reviews.create!(
+      title: "Mountains of Love <3!",
+      rating: 5,
+      content: "Super clean, well-facilitated, and healthy pups.",
+      optional_picture: "https://static.boredpadnda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+    )
   end
 
   it "can see all shelters' names" do
@@ -97,5 +104,14 @@ RSpec.describe "shelters index page", type: :feature do
     end
     visit "/pets"
     expect(page).to have_no_content(@pet_1.name)
+  end
+
+  it "can show top 3 ranking shelters in special section" do 
+    visit "/shelters"
+
+    within(".top-shelters") do
+      expect(page).to have_content("#{@shelter_1.name}")
+      expect(page).to have_no_content("#{@shelter_2.name}")
+    end
   end
 end

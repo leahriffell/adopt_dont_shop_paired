@@ -1,7 +1,24 @@
 <h1>Shelters</h1>
-<h3><a href="/shelters/new">New Shelter</a></h3>
+<h3><a href="/shelters/new">New Shelter</a></h3><br>
 
-<% @shelters.each do |shelter| %>
+<h4>Top Ranking Shelters</h4>
+<% @top_shelters.each do |shelter| %>
+  <div class="content-card top-shelters" id="shelter-<%=shelter.id%>">
+    <h2><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h2>
+    <div>
+      <a href="/shelters/<%= shelter.id %>/edit">Update Shelter</a><br>
+      <% if shelter.has_pending_apps %>
+        <p class="explanation">Shelter has pending applications</p>
+      <% else %>
+        <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete, data: {confirm: "Are you sure you want to delete this shelter?"}%>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<br><hr><br>
+
+<% @non_top_shelters.each do |shelter| %>
   <div class="content-card" id="shelter-<%=shelter.id%>">
     <h2><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h2>
     <div>
