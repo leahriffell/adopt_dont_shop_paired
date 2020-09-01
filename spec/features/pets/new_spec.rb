@@ -32,6 +32,6 @@ RSpec.describe "new pet page", type: :feature do
     visit "/shelters/#{@shelter_1.id}/pets/new"
     click_button("Add Pet")
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}/pets/new")
-    expect(page).to have_content("Please fill in: image, name, description, age, sex")
+    expect(page).to have_content("Please fill in: name, image, description, age, sex")
   end
 end

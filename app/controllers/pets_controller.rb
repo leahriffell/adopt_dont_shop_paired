@@ -75,12 +75,12 @@ class PetsController < ApplicationController
   end
 
   def error_message
-    messages = [""]
-    messages << "image " if params[:image].empty?
-    messages << "name " if params[:name].empty?
-    messages << "age " if params[:approximate_age].empty?
-    messages << "description " if params[:description].empty?
-    messages << "sex " if params[:sex].empty?
-    flash[:error] = "Please fill in: #{messages}"
+    messages = []
+    messages << "name" if params[:name].empty?
+    messages << "image" if params[:image].empty?
+    messages << "description" if params[:description].empty?
+    messages << "age" if params[:approximate_age].empty?
+    messages << "sex" if params[:sex].empty?
+    flash[:error] = "Please fill in: #{messages.join(", ")}"
   end
 end
