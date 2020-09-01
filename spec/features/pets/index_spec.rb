@@ -77,5 +77,4 @@ RSpec.describe "pets index page", type: :feature do
       expect(page).to have_content("Pet has pending application")
     end
   end
-
 end
