@@ -59,6 +59,11 @@ describe Pet, type: :model do
       expect(@pet_2.has_apps).to eq(false)
     end
 
+    it "can see number of applications" do
+      expect(@pet_1.count_of_apps).to eq(1)
+      expect(@pet_2.count_of_apps).to eq(0)
+    end
+
     it "can change application status to pending" do
       @pet_2.change_to_pending
       expect(@pet_2.adoption_status).to eq("Pending")
@@ -79,11 +84,11 @@ describe Pet, type: :model do
       expect(@pet_1.adoption_status).to eq("Adoptable")
     end
 
-    # it "can delete all associations of a pet" do
-    #   subject { Cart.new({'1' => 1, '2' => 1}) }
-    #   intial_count = subject.total_count
-    #   @pet_1.delete_pet_and_associations(@pet_1.id, subject)
-    #   expect(subject.total_count).to eq(intial_count - 1)
-    # end
+    it "can delete all associations of a pet" do
+      cart = Cart.new({"#{@pet_1.id}" => 1, "#{@pet_2.id}" => 1})
+      @pet_1.delete_pet_and_associations(@pet_1, cart)
+      expect(cart.total_count).to eq(1)
+      expect(@application.pets).to eq([])
+    end
   end
 end

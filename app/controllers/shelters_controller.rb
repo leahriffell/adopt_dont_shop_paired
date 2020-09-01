@@ -39,7 +39,7 @@
 
     def destroy
       shelter = Shelter.find(params[:id])
-      shelter.delete_shelter_and_associations(shelter.id)
+      shelter.delete_shelter_and_associations(shelter.id, cart)
       redirect_to "/shelters"
     end
 

@@ -104,12 +104,12 @@ describe Shelter, type: :model do
     it { should validate_presence_of :zip }
   end
 
-  describe "class methods" do 
+  describe "class methods" do
     it "can get top 3 highest reviewed shelters" do
       expect(Shelter.top_three).to eq([@shelter_2, @shelter, @shelter_3])
     end
   end
-    
+
   describe "instance methods" do
     it "can see if a shelter has any reviews" do
       expect(@shelter.has_reviews).to eq(true)
@@ -127,11 +127,17 @@ describe Shelter, type: :model do
     end
 
     it "can delete all associations of a shelter" do
-      @shelter.delete_shelter_and_associations(@shelter.id)
+      cart = Cart.new({"#{@pet_1.id}" => 1, "#{@pet_2.id}" => 1})
+      @shelter.delete_shelter_and_associations(@shelter.id, cart)
       expect(Pet.where(id: @pet_1.id)).to eq([])
       expect(Review.where(id: @review_1.id)).to eq([])
       expect(Review.where(id: @review_2.id)).to eq([])
       expect(Shelter.where(id: @shelter.id)).to eq([])
+    end
+
+    it "can get number of applications at a shelter" do
+      expect(@shelter_2.count_of_apps).to eq(1)
+      expect(@shelter.count_of_apps).to eq(0)
     end
   end
 end
