@@ -15,6 +15,45 @@ RSpec.describe "show shelter by id page", type: :feature do
                                   content: "Super clean, well-facilitated, and healthy pups.",
                                   optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
                                 )
+    @pet_1 = Pet.create!(
+                        image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                        name: "Fluffy",
+                        approximate_age: "15 weeks",
+                        sex: "Female",
+                        shelter_id: @shelter_1.id,
+                        description: "I am fluffy and so cute. I need someone to be my friend forever!!",
+                        adoption_status: "adoptable"
+                      )
+                      
+    @application_1 = @pet_1.applications.create!(
+                                  name: "Paul Bunyan",
+                                  address: "12 Big Tree Ln",
+                                  city: "Alachua",
+                                  state: "TX",
+                                  zip: "95743",
+                                  phone_number: "1234567890",
+                                  description: "My trusty Blue Ox is retired. Looking for my forever logging partner!"
+                                )
+
+    @pet_2 = Pet.create!(
+                          image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
+                          name: "Bernard",
+                          approximate_age: "1",
+                          description: "I like to spit!",
+                          sex: "Male",
+                          shelter_id: @shelter_1.id,
+                          adoption_status: "Adoptable",
+                          approved_applicant: nil
+                        )
+    @application_2 = @pet_2.applications.create!(
+                                  name: "Dani Coleman",
+                                  address: "123 Road Dr.",
+                                  city: "Arvada",
+                                  state: "CO",
+                                  zip: "80005",
+                                  phone_number: "555-555-5555",
+                                  description: "I love animals!!!!!"
+                                )
   end
 
   it "can see the shelter's name and address" do

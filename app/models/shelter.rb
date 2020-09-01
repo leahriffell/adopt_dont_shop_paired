@@ -10,7 +10,7 @@ class Shelter < ApplicationRecord
 
   def self.top_three
     avg_ratings = Shelter.select('shelters.*, reviews.*').joins(:reviews).group(:id).average(:rating)
-    
+
     avg_ratings_sorted = avg_ratings.sort_by {|shelter, avg_rating| -avg_rating}[0..2]
 
     avg_ratings_sorted.map {|shelter, avg_rating| Shelter.find(shelter)}
@@ -23,7 +23,7 @@ class Shelter < ApplicationRecord
   def avg_rating
     if has_reviews
       reviews.average(:rating)
-    else 
+    else
       "No reviews yet"
     end
   end
@@ -32,8 +32,8 @@ class Shelter < ApplicationRecord
     pets.select {|pet| pet.is_pending}.count != 0
   end
 
-  def delete_shelter_and_associations(shelter_id)
-    pets.each {|pet| Pet.destroy(pet.id)}
+  def delete_shelter_and_associations(shelter_id, cart)
+    pets.each {|pet| pet.delete_pet_and_associations(pet, cart)}
     reviews.each {|review| Review.destroy(review.id)}
     Shelter.destroy(shelter_id)
   end
