@@ -33,4 +33,14 @@ RSpec.describe "edit review page", type: :feature do
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}")
     expect(page).to have_content("Mountains of Love <3 <3!")
   end
+  
+  xit "can add default picture" do
+    visit "/shelters/#{@shelter_1.id}/reviews/#{@review.id}/edit"
+
+    fill_in(:optional_picture, with: "")
+
+    click_button("Update Review")
+    
+    expect(page).to have_css("img[src$='default_review_image.jpg']")
+  end
 end

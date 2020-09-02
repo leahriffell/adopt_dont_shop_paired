@@ -28,7 +28,10 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     review.update(review_params)
-    review.save
+    if !has_picture 
+      review.update(optional_picture: default_picture)
+    end
+    # review.save
     redirect_to "/shelters/#{review.shelter_id}"
   end
 
