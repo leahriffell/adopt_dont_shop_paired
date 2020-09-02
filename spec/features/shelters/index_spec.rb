@@ -17,6 +17,15 @@ RSpec.describe "shelters index page", type: :feature do
                                   state: "CO",
                                   zip: "80439"
                                 )
+    @pet_1 = @shelter_1.pets.create!(
+                                    image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
+                                    name: "Fluffy",
+                                    approximate_age: "15 weeks",
+                                    sex: "Female",
+                                    description: "I am fluffy and so cute. I need someone to be my friend forever!!",
+                                    adoption_status: "Adoptable",
+                                    approved_applicant: nil
+                                  )
 
     @pet_2 = Pet.create!(
                           image: "https://i.pinimg.com/564x/2e/94/aa/2e94aaff89dcf73b17de85b17cddc038.jpg",
@@ -89,19 +98,12 @@ RSpec.describe "shelters index page", type: :feature do
   end
 
   it "can delete all pets at shelter when shelter is deleted" do
-    @pet_1 = @shelter_1.pets.create!(
-                          image: "http://3.bp.blogspot.com/-72agMABPgDw/Tx-76OX1SWI/AAAAAAAAAB4/OYmSC3j-4S8/s400/5.jpg",
-                          name: "Fluffy",
-                          approximate_age: "15 weeks",
-                          sex: "Female",
-                          description: "I am fluffy and so cute. I need someone to be my friend forever!!",
-                          adoption_status: "Adoptable",
-                          approved_applicant: nil
-                        )
-
     visit "/shelters"
 
-    click_link "Delete Shelter"
+    within("#shelter-#{@shelter_1.id}") do 
+      click_link "Delete Shelter"
+    end
+
     visit "/pets"
     expect(page).to have_no_content(@pet_1.name)
   end
