@@ -3,7 +3,8 @@
   <%= text_field_tag :title, @review.title, placeholder: 'Title' %><br>
 
   <%= label_tag :rating %>
-  <%= text_field_tag :rating, @review.rating, placeholder: 'Rating' %><br>
+  <!-- <%= text_field_tag :rating, @review.rating, placeholder: 'Rating' %><br> -->
+  <%= select_tag :rating, options_for_select([5, 4, 3, 2, 1]) %><br><br><br>
 
   <%= label_tag :content %>
   <%= text_field_tag :content, @review.content, placeholder: 'Content' %><br>
