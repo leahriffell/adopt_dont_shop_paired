@@ -7,7 +7,6 @@
   <div class="content-card">
     <h2><a href="/pets/<%= pet.id %>"><%= pet.name %></a></h2>
     <%= image_tag pet.image, class: "image"%>
-    <p>Age: <%= pet.approximate_age %></p>
-    <p>Sex: <%= pet.sex %></p>
+    <%= render :partial => "pet_info", locals: { pet: pet } %>
   </div>
 <% end %>

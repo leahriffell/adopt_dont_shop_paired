@@ -14,7 +14,7 @@ RSpec.describe "new review page", type: :feature do
     visit "/shelters/#{@shelter_1.id}/reviews/new"
 
     fill_in(:title, with: "Mountains of Love <3!")
-    fill_in(:rating, with: 5)
+    select 5, from: :rating
     fill_in(:content, with: "Super clean, well-facilitated, and healthy pups.")
     fill_in(:optional_picture, with: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg")
 
@@ -25,7 +25,6 @@ RSpec.describe "new review page", type: :feature do
     expect(page).to have_content(5)
     expect(page).to have_content("Super clean, well-facilitated, and healthy pups.")
     expect(page).to have_css("img[src*=heart-4]")
-    # how to make this test dynamic?
   end
 
   it "can require fields" do
@@ -37,5 +36,17 @@ RSpec.describe "new review page", type: :feature do
     expect(page).to have_button("Add Review")
 
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}/reviews/new")
+  end
+
+
+  xit "can add default picture" do
+    visit "/shelters/#{@shelter_1.id}/reviews/new"
+    
+    fill_in(:title, with: "Mountains of Love <3!")
+    select 5, from: :rating
+    fill_in(:content, with: "Super clean, well-facilitated, and healthy pups.")
+    click_button("Add Review")
+
+    expect(page).to have_css("img[src$='default_review_image.jpg']")
   end
 end
