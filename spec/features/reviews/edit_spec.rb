@@ -10,11 +10,11 @@ RSpec.describe "edit review page", type: :feature do
                                   zip: "80247"
                                 )
     @review = @shelter_1.reviews.create!(
-                              title: "Mountains of Love <3!",
-                              rating: 5,
-                              content: "Super clean, well-facilitated, and healthy pups.",
-                              optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
-                            )
+                                  title: "Mountains of Love <3!",
+                                  rating: 5,
+                                  content: "Super clean, well-facilitated, and healthy pups.",
+                                  optional_picture: "https://static.boredpanda.com/blog/wp-content/uuuploads/tuna-funny-dog-tunameltsmyheart/tuna-funny-dog-tunameltsmyheart-4.jpg",
+                                )
 
   end
 
@@ -33,14 +33,15 @@ RSpec.describe "edit review page", type: :feature do
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}")
     expect(page).to have_content("Mountains of Love <3 <3!")
   end
-  
-  xit "can add default picture" do
+
+  it "can add default picture" do
     visit "/shelters/#{@shelter_1.id}/reviews/#{@review.id}/edit"
 
     fill_in(:optional_picture, with: "")
 
     click_button("Update Review")
-    
-    expect(page).to have_css("img[src$='default_review_image.jpg']")
+
+    expect(page).to have_css("img[src*=default_review_image]")
+    #I just removed the .jpg, change the $ to a * and removed the inner ''.
   end
 end

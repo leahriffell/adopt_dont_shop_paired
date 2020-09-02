@@ -32,21 +32,21 @@ RSpec.describe "new review page", type: :feature do
 
     click_button("Add Review")
 
-    expect(page).to have_content("Please fill out title, review, and content.")    
+    expect(page).to have_content("Please fill out title, review, and content.")
     expect(page).to have_button("Add Review")
 
     expect(page).to have_current_path("/shelters/#{@shelter_1.id}/reviews/new")
   end
 
 
-  xit "can add default picture" do
+  it "can add default picture" do
     visit "/shelters/#{@shelter_1.id}/reviews/new"
-    
+
     fill_in(:title, with: "Mountains of Love <3!")
     select 5, from: :rating
     fill_in(:content, with: "Super clean, well-facilitated, and healthy pups.")
     click_button("Add Review")
 
-    expect(page).to have_css("img[src$='default_review_image.jpg']")
+    expect(page).to have_css("img[src*=default_review_image]")
   end
 end
