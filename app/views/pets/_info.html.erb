@@ -5,6 +5,6 @@
   <li><span class="li-label">Shelter: </span><a href="/shelters/<%= pet.shelter.id %>"><%= pet.shelter.name %></a></li>
   <li><span class="li-label">Adoption status: </span><%= pet.adoption_status %></li>
   <% if pet.has_approved_applicant %>
-    <li class="explanation">On hold for <%= pet.approved_applicant %></li>
+    <li class="explanation">On hold for <a href="/applications/<%= pet.find_approved_application.id%>"><%= pet.approved_applicant %></a></li>
   <% end %>
 </ul>

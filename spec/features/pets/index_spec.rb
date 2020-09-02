@@ -27,7 +27,17 @@ RSpec.describe "pets index page", type: :feature do
                           description: "I like to spit",
                           sex: "Male",
                           shelter_id: @shelter_1.id,
-                          adoption_status: "Pending"
+                          adoption_status: "Pending",
+                          approved_applicant: "Dani Coleman"
+                        )
+    @application = @pet_2.applications.create!(
+                          name: "Dani Coleman",
+                          address: "123 Road Dr.",
+                          city: "Arvada",
+                          state: "CO",
+                          zip: "80005",
+                          phone_number: "555-555-5555",
+                          description: "I love animals!!!!!"
                         )
   end
 
@@ -77,6 +87,15 @@ RSpec.describe "pets index page", type: :feature do
     within("#pet-#{@pet_2.id}") do
       expect(page).to have_no_link("Delete Pet")
       expect(page).to have_content("Pet has pending application")
+    end
+  end
+
+  it "can link applicants name to their application show page" do
+    visit "/pets"
+    within("#pet-#{@pet_2.id}") do
+      expect(page).to have_link("#{@application.name}")
+      click_link "#{@application.name}"
+      expect(page).to have_current_path("/applications/#{@application.id}")
     end
   end
 end
