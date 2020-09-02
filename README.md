@@ -1,19 +1,19 @@
 # Adopt Don't Shop Paired Project
 
-"Adopt Don't Shop" is a fictictious pet adoption app built on Rails. Users can favorite pets and apply to adopt these pets."
+### Adopt Don't Shop is a fictictious pet adoption app built on Rails. Users can favorite pets and apply to adopt these pets.
 
 ![Logo](app/assets/images/logo.png)
 
-## Test Deployment
+## Deployment
 
-A test deployment of the project is available here: [friends-furever](https://friends-furever.herokuapp.com/)
+A deployment of the project is available here: [friends-furever](https://friends-furever.herokuapp.com/)
 
 ## Setup
 
 ### Prerequisites
 
-- Ruby 2.6
-- Rails 5.1.x
+- Ruby 2.5
+- Rails 5.2.x
 
 
 ### Running Locally
