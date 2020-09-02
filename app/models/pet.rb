@@ -33,6 +33,10 @@ class Pet < ApplicationRecord
     approved_applicant != nil
   end
 
+  def find_approved_application
+    applications.find {|application| application.name == approved_applicant}
+  end
+
   def change_to_adoptable
     update(adoption_status: "Adoptable")
   end

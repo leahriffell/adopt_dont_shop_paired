@@ -17,7 +17,7 @@ describe Pet, type: :model do
                           sex: "Female",
                           description: "I am fluffy and so cute. I need someone to be my friend forever!!",
                           adoption_status: "Pending",
-                          approved_applicant: "Paul Bunyan"
+                          approved_applicant: "Dani Coleman"
                         )
 
     @pet_2 = @shelter_1.pets.create!(
@@ -89,6 +89,10 @@ describe Pet, type: :model do
       @pet_1.delete_pet_and_associations(@pet_1, cart)
       expect(cart.total_count).to eq(1)
       expect(@application.pets).to eq([])
+    end
+
+    it "can find application with matching applicant name" do
+      expect(@pet_1.find_approved_application).to eq(@application)
     end
   end
 end
