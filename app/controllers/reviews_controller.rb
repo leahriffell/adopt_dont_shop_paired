@@ -10,7 +10,10 @@ class ReviewsController < ApplicationController
   def create
     shelter = Shelter.find(params[:id])
     review = shelter.reviews.create(review_params)
-    if review.save
+    if review.save && has_picture
+      redirect_to "/shelters/#{shelter.id}"
+    elsif review.save && !has_picture
+      review.update(optional_picture: default_picture)
       redirect_to "/shelters/#{shelter.id}"
     else
       flash[:notice] = "Please fill out title, review, and content."
@@ -34,6 +37,14 @@ class ReviewsController < ApplicationController
     shelter_id = review.shelter_id
     Review.destroy(params[:id])
     redirect_to "/shelters/#{shelter_id}"
+  end
+
+  def has_picture
+    params[:optional_picture] != ""
+  end
+
+  def default_picture 
+    "default_review_image.jpg"
   end
 
   private
