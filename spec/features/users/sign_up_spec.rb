@@ -19,10 +19,10 @@ RSpec.describe "User registration form" do
     expect(page).to have_content("Welcome, #{username}!")
   end
 
-  xit "keeps a user logged in after registering" do
+  it "keeps a user logged in after registering" do
     visit "/"
 
-    click_on "Sign up"
+    click_on "Sign in"
 
     username = "funbucket13"
     password = "test"
