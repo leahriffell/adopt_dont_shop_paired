@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get '/pets/:id/applications', to: 'application_pets#index'
   patch '/pets/:id/application_status', to: 'pets#change_application_status'
 
-  get '/users/new', to: 'users#new'
+  get '/users/sign_up', to: 'users#sign_up'
   post 'users', to: 'users#create'
-  get '/profile', to: 'users#show'
+  get '/profile', to: 'users#create'
 end
