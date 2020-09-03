@@ -40,4 +40,5 @@ Rails.application.routes.draw do
   get '/users/sign_up', to: 'users#sign_up'
   post 'users', to: 'users#create'
   get '/profile', to: 'users#create'
+  get '/sign_in', to: 'sessions#new'
 end
