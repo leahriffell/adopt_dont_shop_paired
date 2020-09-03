@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/', to: 'welcome#index'
+  root 'welcome#index'
 
   get '/shelters', to: 'shelters#index'
   get '/shelters/new', to: 'shelters#new'
@@ -36,4 +36,10 @@ Rails.application.routes.draw do
   get 'applications/:id', to: 'applications#show'
   get '/pets/:id/applications', to: 'application_pets#index'
   patch '/pets/:id/application_status', to: 'pets#change_application_status'
+
+  get '/users/sign_up', to: 'users#sign_up'
+  post 'users', to: 'users#create'
+  get '/profile', to: 'users#show'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
 end
