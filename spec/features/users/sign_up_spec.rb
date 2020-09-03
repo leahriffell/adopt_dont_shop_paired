@@ -20,17 +20,23 @@ RSpec.describe "User registration form" do
   end
 
   it "keeps a user logged in after registering" do
+    User.create!(username: "funbucket13", password: "test")
+
     visit "/"
 
-    click_on "Sign in"
+    click_on "Login"
+    expect(current_path).to eq('/login')
 
     username = "funbucket13"
     password = "test"
 
-    fill_in :username, with: username
-    fill_in :password, with: password
+    within(".form") do
+      fill_in :username, with: username
+      fill_in :password, with: password
+      click_on "Login"
+    end
 
-    click_on "Register"
+    expect(current_path).to eq("/")
 
     visit '/profile'
 
