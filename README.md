@@ -15,7 +15,6 @@ A deployment of the project is available here: [friends-furever](https://friends
 - Ruby 2.5
 - Rails 5.2.x
 
-
 ### Running Locally
 
 ```shell
