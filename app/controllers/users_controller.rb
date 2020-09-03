@@ -3,9 +3,14 @@ class UsersController < ApplicationController
   end
 
   def create 
-    User.create(user_params)
+    new_user = User.create(user_params)
     welcome_message
+    session[:user_id] = new_user.id
     redirect_to "/"
+  end
+
+  def show 
+    @user = User.find(session[:user_id])
   end
 
   private 
